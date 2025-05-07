@@ -1,5 +1,5 @@
 # Curriculum Browser
-
+Initial commit
 
 
 ## Getting started
