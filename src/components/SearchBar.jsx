@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./SearchBar.css";
 import {data} from '../data.js'
 
 const SearchBar = ({setResults}) => {   
   const [input, setInput] = useState("");
+  // Show all data by default
+  useEffect(() => {setResults(data);}, []);
 
     //   const fetchData = (value) => {
     //     fetch("https://jsonplaceholder.typicode.com/users")
@@ -16,6 +18,11 @@ const SearchBar = ({setResults}) => {
     //     });
     //   };
   const filterData = (value) => {
+    if (!value) {
+        setResults(data); // Show all if input is cleared
+        return;
+    }
+
     const results = data.filter((course) => {
         return (
             value &&
