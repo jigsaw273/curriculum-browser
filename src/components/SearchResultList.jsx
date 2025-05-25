@@ -1,35 +1,18 @@
 import { useState } from "react";
 import { Table } from "react-bootstrap";
+import "./SearchResultList.css";
 
-export const SearchResultList = ({ results }) => {
+export default function SearchResultList({ results }) {
     return (
         <div className="search-results">
-             <Table>
-                <thead>
-                    <tr>
-                    <th>Course Code</th>
-                    <th>Course Name</th>
-                    <th>Professor</th>
-                    <th>Points</th>
-                    </tr>
-                </thead>
-    
-                <tbody>
-                    {results.map((item) => (
-                    <tr key={item.faculty+item.code}>
-                        <td>{item.course_code}</td>
-                        <td>{item.course_name}</td>
-                        <td>{item.professor_name}</td>
-                        <td>{item.points}</td>
-                    </tr>
-                    ))}
-                    
-                </tbody>
-            </Table>
+            {
+                results.map((item) => (
+                    <div class="course-info-card">
+                        <p>{item.course_code} : {item.course_name}</p>
+                        
+                    </div>
+                ))    
+            }
         </div>
     )
 }
-
-// results.map((result, id) => {
-                //     return <div key={id}>{result.name}</div>
-                // })

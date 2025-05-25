@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Table } from "react-bootstrap";
 import "./TableSearchResults.css";
 
-export const TableSearchResults = ({ results }) => {
+export default function TableSearchResults({results}){
     return (
         <div className="search-results">
              <Table className="table">
@@ -19,7 +19,7 @@ export const TableSearchResults = ({ results }) => {
                 <tbody>
                     {results.map((item) => (
                     <tr key={item.faculty+item.code}>
-                        <td>{item.course_code}</td>
+                        <td>{item.course_code+item.course_num}</td>
                         <td>{item.course_name}</td>
                         <td>{item.professor_name}</td>
                         <td>{item.points}</td>
