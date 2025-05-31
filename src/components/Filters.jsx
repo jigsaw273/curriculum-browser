@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import "./Filter.css";
 
 const courses = ['SWEN', 'COMP', 'NWEN', 'AIML', 'CYBR']
 const yearlvl = ['100', '200', '300', '400']
@@ -24,7 +25,7 @@ export default function Filters({ onCourseFilter, onYearFilter }) {
     }
 
     return (
-        <div>
+        <div className="filter-container">
             {courses.map((course) => (
                 <label className="filter-checkbox" key={course}>
                     <input
