@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './App.css'
 //import Search from './components/SearchBar'
-import CourseFlow from './pages/Flow.jsx'
+import CourseFlow from './pages/CourseFlow.jsx'
 import SearchContainer from './components/SearchContainer.jsx'
 // import Filters from './components/Filters.jsx'
 // import {data} from './data.js'

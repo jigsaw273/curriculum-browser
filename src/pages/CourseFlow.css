@@ -1,0 +1,47 @@
+.flow-container {
+  width: 100vw;
+  height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.course-node {
+  border: 2px solid #4f46e5;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: white;
+  width: 200px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  cursor: grab;
+}
+
+.course-node:active {
+  cursor: grabbing;
+}
+
+.course-id {
+  font-weight: bold;
+  color: #1e293b;
+  margin-bottom: 4px;
+}
+
+.course-name {
+  font-size: 12px;
+  color: #475569;
+}
+
+.course-edge {
+  stroke: #64748b;
+  stroke-width: 2;
+}
+
+.react-flow__controls {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border: 1px solid #e2e8f0;
+}
+
+.react-flow__background {
+  color: #e2e8f0;
+  gap: 20px;
+}
