@@ -1,0 +1,35 @@
+.flow-container {
+  width: 80vw;
+  height: 80vh;
+  background-color: darkslateblue;
+}
+
+.course-node {
+  border: 1px solid #777;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #fff;
+  width: 180px;
+  font-size: 12px;
+  text-align: center;
+  white-space: pre-wrap;
+  cursor: grab;
+}
+
+.course-node:active {
+  cursor: grabbing;
+}
+
+.course-edge {
+  stroke-width: 2;
+}
+
+.react-flow__controls {
+  background-color: rgba(248, 247, 250, 0.8);
+  border-radius: 4px;
+}
+
+.react-flow__background {
+  color: #fff;
+  gap: 16px;
+}
