@@ -1,29 +1,49 @@
-import React from "react"
+import React, { useState } from "react"
 
-const courses = ['SWEN', 'COMP', 'NWEN','AIML', 'CYBR']
+const courses = ['SWEN', 'COMP', 'NWEN', 'AIML', 'CYBR']
 const yearlvl = ['100', '200', '300', '400']
 
-function handleFilter(value){
-    console.log(value)
-}
+export default function Filters({ onCourseFilter, onYearFilter }) {
+    const [selectedCourses, setSelectedCourses] = useState([])
+    const [selectedYears, setSelectedYears] = useState([])
 
-export default function Filters(){ 
+    const handleCourseChange = (course) => {
+        const newSelectedCourses = selectedCourses.includes(course)
+            ? selectedCourses.filter(c => c !== course)
+            : [...selectedCourses, course]
+        setSelectedCourses(newSelectedCourses)
+        onCourseFilter(newSelectedCourses)
+    }
+
+    const handleYearChange = (year) => {
+        const newSelectedYears = selectedYears.includes(year)
+            ? selectedYears.filter(y => y !== year)
+            : [...selectedYears, year]
+        setSelectedYears(newSelectedYears)
+        onYearFilter(newSelectedYears)
+    }
+
     return (
         <div>
             {courses.map((course) => (
                 <label className="filter-checkbox" key={course}>
-                    <input type="checkbox" 
+                    <input
+                        type="checkbox"
                         value={course}
-                        onChange={() => onCourseFilter(course)}    
+                        checked={selectedCourses.includes(course)}
+                        onChange={() => handleCourseChange(course)}
                     />
                     <span>{course}</span>
                 </label>
             ))}
+            
             {yearlvl.map((year) => (
                 <label className="filter-checkbox" key={year}>
-                    <input type="checkbox" 
+                    <input
+                        type="checkbox"
                         value={year}
-                        onChange={() => onYearFilter(year)}    
+                        checked={selectedYears.includes(year)}
+                        onChange={() => handleYearChange(year)}
                     />
                     <span>{year}</span>
                 </label>
@@ -31,45 +51,3 @@ export default function Filters(){
         </div>
     )
 }
-
-// export default function SearchBar({setResults}) {   
-//   const [input, setInput] = useState("");
-//   // Show all data by default
-//   useEffect(() => {setResults(data);}, []);
-
-//   const filterData = (value) => {
-//     if (!value) {
-//         setResults(data); // Show all if input is cleared
-//         return;
-//     }
-
-//     const results = data.filter((course) => {
-//         return (
-//             value &&
-//             course &&
-//             (((course.course_code+course.course_num) && 
-//             (course.course_code+course.course_num).toLowerCase().includes(value.toLowerCase())) ||
-//             (course.course_name && 
-//             course.course_name.toLowerCase().includes(value.toLowerCase()))) 
-//         )
-//     })
-//     setResults(results);
-//   }
-
-//   const handleChange = (value) => {
-//     setInput(value)
-//     //fetchData(value)
-//     filterData(value)
-//     console.log(results)
-//   };
-
-//   return (
-//     <div className='input-wrapper'>
-//         <input 
-//             placeholder="Type to search..." 
-//             value={input} 
-//             onChange={(e) => handleChange(e.target.value)}
-//         /> 
-//     </div>
-//   );
-// };
