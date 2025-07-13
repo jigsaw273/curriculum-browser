@@ -14,6 +14,7 @@ function App() {
         <nav className="app-nav">
           <Link to="/search" className="nav-link">Course Search</Link>
           <Link to="/prerequisites" className="nav-link">Dependency Graph</Link>
+          <Link to="/degree" className="nav-link">Degree Pathways</Link>
         </nav>
 
         <main className="app-content">

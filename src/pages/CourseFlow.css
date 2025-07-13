@@ -14,8 +14,27 @@
   cursor: grab;
 }
 
+.course-node.selected {
+  background-color: #cccaff;
+  border-color: #4f45ff;
+}
+
 .course-node:active {
   cursor: grabbing;
+}
+
+.node-content {
+  position: relative;
+  padding-right: 25px;
+  height: 100%;
+}
+
+.node-checkbox {
+  position: absolute;
+  right: 5px;
+  top: 45%;
+  transform: translateY(-50%);
+  cursor: pointer;
 }
 
 .course-id {

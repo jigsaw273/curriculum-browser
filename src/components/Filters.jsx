@@ -1,8 +1,8 @@
 import React, { useState } from "react"
 import "./Filter.css";
 
-const courses = ['SWEN', 'COMP', 'NWEN', 'AIML', 'CYBR']
-const yearlvl = ['100', '200', '300', '400']
+const courses = ['SWEN', 'ENGR', 'COMP', 'NWEN', 'AIML', 'CYBR', 'RESE']
+const yearlvl = ['100', '200', '300', '400', '500']
 
 export default function Filters({ onCourseFilter, onYearFilter }) {
     const [selectedCourses, setSelectedCourses] = useState([])
@@ -26,6 +26,7 @@ export default function Filters({ onCourseFilter, onYearFilter }) {
 
     return (
         <div className="filter-container">
+            {/* <h4>Course Code</h4> */}
             {courses.map((course) => (
                 <label className="filter-checkbox" key={course}>
                     <input
@@ -34,10 +35,11 @@ export default function Filters({ onCourseFilter, onYearFilter }) {
                         checked={selectedCourses.includes(course)}
                         onChange={() => handleCourseChange(course)}
                     />
-                    <span>{course}</span>
+                    <span className="checkmark">{course}</span>
                 </label>
             ))}
-            
+
+            {/* <h4>Year Level</h4> */}
             {yearlvl.map((year) => (
                 <label className="filter-checkbox" key={year}>
                     <input
@@ -46,7 +48,7 @@ export default function Filters({ onCourseFilter, onYearFilter }) {
                         checked={selectedYears.includes(year)}
                         onChange={() => handleYearChange(year)}
                     />
-                    <span>{year}</span>
+                    <span className="checkmark">{year}</span>
                 </label>
             ))}
         </div>
