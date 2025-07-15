@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Filters from "./Filters";
 import SearchBar from "./SearchBar";
 import { data } from '../splitdata.js';
+import "./SearchContainer.css";
 
 export default function SearchContainer({ setResults }) {
     const [searchInput, setSearchInput] = useState("");
@@ -59,10 +60,12 @@ export default function SearchContainer({ setResults }) {
     return (
         <>
             <SearchBar setSearchInput={setSearchInput} />
-            <Filters 
-                onCourseFilter={handleCourseFilter} 
-                onYearFilter={handleYearFilter} 
-            />
+            <div className="filters-sidebar">
+                <Filters 
+                    onCourseFilter={handleCourseFilter} 
+                    onYearFilter={handleYearFilter} 
+                />
+            </div>
         </>
     )
 }

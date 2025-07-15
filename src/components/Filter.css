@@ -1,0 +1,13 @@
+.filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.7rem;
+  margin: 1rem auto;
+  max-width: 1000px;
+}
+
+
+.filter-checkbox input:checked ~ .checkmark {
+  background-color: #544ae7;
+}
