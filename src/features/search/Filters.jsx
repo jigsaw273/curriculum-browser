@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import "./Filter.css";
+import "./Filters.css";
 
 const courses = ['SWEN', 'ENGR', 'COMP', 'NWEN', 'AIML', 'CYBR', 'RESE']
 const yearlvl = ['100', '200', '300', '400', '500']

@@ -8,7 +8,7 @@ import ReactFlow, {
   MarkerType
 } from 'reactflow';
 import dagre from 'dagre';
-import { courseData } from '../prereq';
+import { courseData } from '../data/prereq';
 import 'reactflow/dist/style.css';
 import './CourseFlow.css';
 

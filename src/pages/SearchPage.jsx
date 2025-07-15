@@ -1,19 +1,12 @@
-// import React from 'react'
+import { useState } from "react";
+import SearchLogicContainer from "../features/search/SearchLogicContainer";
+import TableSearchResults from "../features/search/TableSearchResults";
 
-// import { FaSearch } from "react-icons/fa"
-// import "./SearchBar.css"
-
-// function SearchBar() {
-//     return (
-//       <>
-//         <div className='input-wrapper'>
-//             <FaSearch id="search-id"/> 
-//             <input placeholder="Type to search..."/>
-//           <div>Search Results</div>
-//         </div>
-//       </>
-//     )
-//   }
-  
-//   export default SearchBar();
-  
+export default function SearchPage(){
+    const [results, setResults] = useState([])
+    return (
+        <>
+                <SearchLogicContainer setResults={setResults}/>
+                <TableSearchResults results={results}/>
+        </>)
+}

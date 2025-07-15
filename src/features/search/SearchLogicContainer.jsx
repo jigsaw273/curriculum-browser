@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Filters from "./Filters";
-import SearchBar from "./SearchBar";
-import { data } from '../splitdata.js';
+import Filters from "./Filters.jsx";
+import SearchBar from "./SearchBar.jsx";
+import { data } from '../../data/splitdata.js';
 import "./SearchContainer.css";
 
-export default function SearchContainer({ setResults }) {
+export default function SearchLogicContainer({ setResults }) {
     const [searchInput, setSearchInput] = useState("");
     const [courseFilters, setCourseFilters] = useState([]);
     const [yearFilters, setYearFilters] = useState([]);
