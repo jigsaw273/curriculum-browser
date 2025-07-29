@@ -8,13 +8,12 @@ export default function SearchLogicContainer({ setResults }) {
     const [searchInput, setSearchInput] = useState("");
     const [courseFilters, setCourseFilters] = useState([]);
     const [yearFilters, setYearFilters] = useState([]);
-    const [triFilters, setTriFilters] = useState([]);
 
     useEffect(() => {
-        filterData(searchInput, courseFilters, yearFilters, triFilters);
-    }, [searchInput, courseFilters, yearFilters, triFilters]);
+        filterData(searchInput, courseFilters, yearFilters);
+    }, [searchInput, courseFilters, yearFilters]);
 
-    const filterData = (value, courses, years, tris) => {
+    const filterData = (value, courses, years) => {
         let filtered = data;
 
         // Apply search filter
@@ -36,19 +35,13 @@ export default function SearchLogicContainer({ setResults }) {
             );
         }
 
-        if (tris.length > 0) {
-            filtered = filtered.filter(course => 
-                tris.includes(course.trimesterOffered)
-            );
-        }
-
         // Apply year filters if any are selected
         if (years.length > 0) {
             filtered = filtered.filter(course => {
-                const courseNum = parseInt(course.courseLevel, 10);
+                const courseNum = parseInt(course.course_num, 10);
                 return years.some(year => {
                     const yearNum = parseInt(year, 10);
-                    return courseNum == yearNum;
+                    return courseNum >= yearNum && courseNum < yearNum + 100;
                 });
             });
         }
@@ -64,10 +57,6 @@ export default function SearchLogicContainer({ setResults }) {
         setYearFilters(selectedYears);
     }
 
-    const handleTriFilter = (selectedTri) => {
-        setTriFilters(selectedTri);
-    }
-
     return (
         <>
             <SearchBar setSearchInput={setSearchInput} />
@@ -75,7 +64,6 @@ export default function SearchLogicContainer({ setResults }) {
                 <Filters 
                     onCourseFilter={handleCourseFilter} 
                     onYearFilter={handleYearFilter} 
-                    onTriFilter={handleTriFilter} 
                 />
             </div>
         </>
