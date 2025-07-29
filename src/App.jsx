@@ -4,6 +4,8 @@ import './App.css';
 import CourseFlow from './pages/CourseFlow';
 import SearchPage from './pages/SearchPage';
 import PlannerPage from './pages/PlannerPage'
+import ForwardPlanner from './features/forwardplanner/ForwardPlanner';
+import RequisiteFinder from './features/forwardplanner/RequisiteFinder';
 
 function App() {
   return (
@@ -11,15 +13,17 @@ function App() {
       <div className="app">
         <nav className="app-nav">
           <Link to="/search" className="nav-link">Course Search</Link>
-          <Link to="/prerequisites" className="nav-link">Dependency Graph</Link>
+          <Link to="/tree" className="nav-link">Dependency Graph</Link>
           <Link to="/degree" className="nav-link">Forward Planner</Link>
+          <Link to="/requisites" className="nav-link">Requisite Finder</Link>
         </nav>
 
         <main className="app-content">
           <Routes>
             <Route path="/search" element={<SearchPage />} /> 
-            <Route path="/prerequisites" element={<CourseFlow />} />
-            <Route path="/degree" element={<PlannerPage />} />
+            <Route path="/tree" element={<CourseFlow />} />
+            <Route path="/degree" element={<ForwardPlanner />} />
+            <Route path='/requisites' element={<RequisiteFinder/>} />
             <Route path="/" element={<Navigate to="/search" replace />} />
           </Routes>
         </main>
