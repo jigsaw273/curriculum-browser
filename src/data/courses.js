@@ -1,4 +1,4 @@
-export const courses ={
+export const courseDependencies ={
   "COMP102": {
     "prerequisites": {
       "type": "AND",

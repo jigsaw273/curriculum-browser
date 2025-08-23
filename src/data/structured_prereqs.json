@@ -455,7 +455,7 @@
     "prerequisites": {
       "type": "AND",
       "clauses": [
-        {"type": "", "clauses": [
+        {"type": "AND", "clauses": [
             {"type": "COURSE", "course": "COMP261"},
             {"type": "COURSE", "course": "SWEN221"}
         ]}, 

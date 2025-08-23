@@ -1,16 +1,15 @@
-
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useLayoutEffect, useState } from "react";
 import ReactFlow, {
   Background,
   Controls,
   useNodesState,
   useEdgesState,
-  MarkerType
-} from 'reactflow';
-import dagre from 'dagre';
-import { courseData } from '../data/prereq';
-import 'reactflow/dist/style.css';
-import './CourseFlow.css';
+  MarkerType,
+} from "reactflow";
+import dagre from "dagre";
+import { courseData } from "../data/prereq";
+import "reactflow/dist/style.css";
+import "./CourseFlow.css";
 
 const dagreGraph = new dagre.graphlib.Graph();
 dagreGraph.setDefaultEdgeLabel(() => ({}));
@@ -19,19 +18,19 @@ const nodeWidth = 200;
 const nodeHeight = 80;
 
 const getLayoutedElements = (nodes, edges) => {
-  dagreGraph.setGraph({ rankdir: 'TB', ranksep: 100, nodesep: 50 });
+  dagreGraph.setGraph({ rankdir: "TB", ranksep: 100, nodesep: 50 });
 
-  nodes.forEach(node => {
+  nodes.forEach((node) => {
     dagreGraph.setNode(node.id, { width: nodeWidth, height: nodeHeight });
   });
 
-  edges.forEach(edge => {
+  edges.forEach((edge) => {
     dagreGraph.setEdge(edge.source, edge.target);
   });
 
   dagre.layout(dagreGraph);
 
-  return nodes.map(node => {
+  return nodes.map((node) => {
     const nodeWithPosition = dagreGraph.node(node.id);
     return {
       ...node,
@@ -49,17 +48,17 @@ const CourseFlow = () => {
   const [selectedNodes, setSelectedNodes] = useState([]);
 
   const toggleNodeSelection = (nodeId) => {
-    setSelectedNodes(prev => 
+    setSelectedNodes((prev) =>
       prev.includes(nodeId)
-        ? prev.filter(id => id !== nodeId)
+        ? prev.filter((id) => id !== nodeId)
         : [...prev, nodeId]
     );
   };
 
   useLayoutEffect(() => {
-    const initialNodes = courseData.courses.map(course => ({
+    const initialNodes = courseData.courses.map((course) => ({
       id: course.id,
-      data: { 
+      data: {
         label: (
           <div className="node-content" onClick={(e) => e.stopPropagation()}>
             <div className="course-id">{course.id}</div>
@@ -71,20 +70,20 @@ const CourseFlow = () => {
               className="node-checkbox"
             />
           </div>
-        )
+        ),
       },
-      className: `course-node ${selectedNodes.includes(course.id) ? 'selected' : ''}`,
-      draggable: true
+      className: `course-node ${selectedNodes.includes(course.id) ? "selected" : ""}`,
+      draggable: true,
     }));
 
-    const initialEdges = courseData.courses.flatMap(course => 
-      course.prerequisites.map(prereq => ({
+    const initialEdges = courseData.courses.flatMap((course) =>
+      course.prerequisites.map((prereq) => ({
         id: `e${prereq}-${course.id}`,
         source: prereq,
         target: course.id,
-        type: 'smoothstep',
+        type: "smoothstep",
         markerEnd: { type: MarkerType.ArrowClosed },
-        className: 'course-edge'
+        className: "course-edge",
       }))
     );
 
