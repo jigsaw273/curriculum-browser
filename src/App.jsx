@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import "./App.css";
 import CourseFlow from "./pages/CourseFlow";
+import DegreePlanner from "./pages/DegreePlanner";
 import ExplorationPage from "./pages/ExplorationPage";
 import ForwardPlannerPage from "./pages/ForwardPlannerPage";
 import SearchPage from "./pages/SearchPage";
@@ -37,8 +38,8 @@ function App() {
         <main className="app-content">
           <Routes>
             <Route path="/search" element={<SearchPage />} />
-            <Route path="/tree" element={<ForwardPlannerPage />} />
-            <Route path="/degree" element={<ForwardPlanner />} />
+            <Route path="/tree" element={<ForwardPlanner />} />
+            <Route path="/degree" element={<CourseFlow />} />
             <Route path="/requisites" element={<RequisiteFinder />} />
             <Route path="/" element={<Navigate to="/search" replace />} />
           </Routes>

@@ -72,17 +72,18 @@ export function useForwardPlanner() {
       return selectedCourses.includes(clause.course);
     }
 
-    //     if (clause.type === "POINTS") {
-    //     const relevantCourses = selectedCourses
-    //         .map(id => courses[id])
-    //         .filter(c =>
-    //         clause.subjects.includes(c.subject) &&
-    //         (!clause.level || c.level >= clause.level)
-    //         );
+    if (clause.type === "POINTS") {
+      const relevantCourses = selectedCourses
+        .map((id) => courseDependencies[id])
+        .filter(
+          (c) =>
+            clause.subjects.includes(c.subject) &&
+            (!clause.level || c.level >= clause.level) // >= or == ??
+        );
 
-    //     const totalPoints = relevantCourses.reduce((sum, c) => sum + c.points, 0);
-    //     return totalPoints >= clause.minPoints;
-    //     }
+      const totalPoints = relevantCourses.reduce((sum, c) => sum + c.points, 0);
+      return totalPoints >= clause.minPoints;
+    }
     return false;
   }
 

@@ -16,6 +16,7 @@ export const unlockGraph = {
   "COMP103": {
     "unlocks": [
       "COMP261",
+      "CGRA252",
       "NWEN241",
       "NWEN243",
       "SWEN221"
@@ -44,6 +45,9 @@ export const unlockGraph = {
   "NWEN241": {
     "unlocks": [
       "CYBR271",
+      "CGRA350",
+      "CGRA352",
+      "CGRA354",
       "SWEN326"
     ]
   },
@@ -62,6 +66,11 @@ export const unlockGraph = {
   "STAT193": {
     "unlocks": [
       "CYBR372"
+    ]
+  },
+  "CYBR371": {
+    "unlocks": [
+      "CYBR471"
     ]
   },
   "ENGR101": {
@@ -87,7 +96,10 @@ export const unlockGraph = {
   },
   "ENGR121": {
     "unlocks": [
-      "ENGR122"
+      "ENGR122",
+      "ENGR123",
+      "CGRA352",
+      "CGRA354"
     ]
   },
   "MATH141": {
@@ -98,6 +110,24 @@ export const unlockGraph = {
   "DSDN142": {
     "unlocks": [
       "CGRA151"
+    ]
+  },
+  "CGRA151": {
+    "unlocks": [
+      "CGRA252"
+    ]
+  },
+  "CGRA252": {
+    "unlocks": [
+      "CGRA350",
+      "CGRA352",
+      "CGRA354"
+    ]
+  },
+  "MATH151": {
+    "unlocks": [
+      "CGRA352",
+      "CGRA354"
     ]
   },
   "SWEN221": {
@@ -119,4 +149,4 @@ export const unlockGraph = {
       "SWEN304"
     ]
   }
-}
+};
