@@ -10,7 +10,6 @@ import "./App.css";
 import CourseFlow from "./pages/CourseFlow";
 import DegreePlanner from "./pages/DegreePlanner";
 import ExplorationPage from "./pages/ExplorationPage";
-import ForwardPlannerPage from "./pages/ForwardPlannerPage";
 import SearchPage from "./pages/SearchPage";
 import PlannerPage from "./pages/PlannerPage";
 import ForwardPlanner from "./features/forwardplanner/ForwardPlanner";
