@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Table } from "react-bootstrap";
 import "./TableSearchResults.css";
 
@@ -7,7 +6,7 @@ export default function TableSearchResults({results}){
         const url = `https://www.wgtn.ac.nz/courses/${course.course_code}/${course.course_num}`;
         window.open(url, '_blank');
     };
-
+    
     return (
         <div className="search-results">
              <Table className="table">
@@ -16,8 +15,8 @@ export default function TableSearchResults({results}){
                     <tr>
                     <th>Course Code</th>
                     <th>Course Name</th>
-                    <th>Professor</th>
-                    <th>Points</th>
+                    <th>Course Coordinator</th>
+                    <th>Trimester</th>
                     </tr>
                 </thead>
     
@@ -29,8 +28,8 @@ export default function TableSearchResults({results}){
                     >
                         <td>{item.course_code+item.course_num}</td>
                         <td>{item.course_name}</td>
-                        <td>{item.professor_name}</td>
-                        <td>{item.points}</td>
+                        <td>{item.courseCoordinator}</td>
+                        <td>{item.trimesterOffered}</td>
                     </tr>
                     ))}
                     
