@@ -1,6 +1,6 @@
 import { useRequisiteFinder } from "../../hooks/useRequisiteFinder.js";
 import { courseDependencies } from "../../data/courses.js";
-import "./ForwardPlanner.css";
+import "./ForwardPlannerCard.css";
 
 export default function RequisiteFinder() {
   const { unlockedCourses, prerequisites, findRequisites } =

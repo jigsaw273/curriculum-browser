@@ -8,9 +8,9 @@ import ReactFlow, {
   MarkerType,
 } from "reactflow";
 import dagre from "dagre";
-import { useForwardPlanner } from "../hooks/useForwardPlanner";
-import { courseData } from "../data/prereq";
-import { unlockGraph } from "../data/unlocks";
+import { useForwardPlanner } from "../../hooks/useForwardPlanner";
+import { courseData } from "../../data/prereq";
+import { unlockGraph } from "../../data/unlocks";
 import "reactflow/dist/style.css"; //default styles remove later
 
 const dagreGraph = new dagre.graphlib.Graph();
@@ -60,7 +60,7 @@ const getLayoutedElements = (nodes, edges, direction = "TB") => {
 // Memoized node types to prevent warnings
 const nodeTypes = {};
 
-export default function CourseFlow() {
+export default function ForwardPlanner() {
   //Forward Planner Hook
   const { selectedCourses, toggleCourse, possibleUnlocks, unlockedCourses } =
     useForwardPlanner();

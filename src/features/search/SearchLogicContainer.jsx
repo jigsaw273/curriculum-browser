@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Filters from "./Filters.jsx";
 import SearchBar from "./SearchBar.jsx";
 import { data } from "../../data/splitdata.js";
-import "./SearchContainer.css";
+// import "./SearchContainer.css";
 
 export default function SearchLogicContainer({ setResults }) {
   const [searchInput, setSearchInput] = useState("");

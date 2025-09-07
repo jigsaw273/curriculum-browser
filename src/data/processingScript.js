@@ -1,6 +1,7 @@
 import fs from "fs";
 import { courseDependencies } from "./courses.js";
 
+//MOVE TO SCRIPTS FOLDER LATER
 // recursively extract all prerequisite course codes
 function extractCourses(clause) {
   if (!clause) return [];

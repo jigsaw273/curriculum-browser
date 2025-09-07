@@ -1,6 +1,6 @@
 import { useForwardPlanner } from "../../hooks/useForwardPlanner.js";
 import { courseDependencies } from "../../data/courses.js";
-import "./ForwardPlanner.css";
+import "./ForwardPlannerCard.css";
 
 export default function ForwardPlanner() {
   const { selectedCourses, toggleCourse, possibleUnlocks, unlockedCourses } =
