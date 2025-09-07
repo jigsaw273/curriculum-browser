@@ -1,0 +1,64 @@
+/* .course-tree {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+}
+
+.course-node {
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: #1b3d43;
+  display: inline-block;
+  min-width: 60px;
+  text-align: center;
+  margin: 2px;
+  font-weight: 500;
+}
+
+.course-node-main {
+  background-color: #FFA500; 
+
+.course-node-prereq {
+  background-color: #E74C3C; 
+}
+
+.course-node-optional {
+  background-color: #2ECC71; 
+}
+
+.course-node-other {
+  background-color: #BDC3C7; 
+}
+
+.connector {
+  margin: 0 10px;
+  font-style: italic;
+  color: #555;
+}
+
+.tree-container {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.tree-branch {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.tree-branch-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-left: 20px;
+  border-left: 2px dashed #ccc;
+  padding-left: 15px;
+}
+
+.operator-label {
+  font-weight: 600;
+  color: #7D3C98;
+  margin-right: 5px;
+} */

@@ -13,6 +13,7 @@ import ExplorationPage from "./pages/ExplorationPage";
 import SearchPage from "./pages/SearchPage";
 //import YearPlanner from "./pages/YearPlanner";
 import ForwardPlannerCard from "./features/temp/ForwardPlannerCard";
+import CourseInfoPage from "./pages/CourseInfoPage";
 import RequisiteFinder from "./features/temp/RequisiteFinder";
 
 function App() {
@@ -52,7 +53,12 @@ function App() {
             <Route path="/tree" element={<ForwardPlannerCard />} />
             <Route path="/degree" element={<ForwardPlanner />} />
             <Route path="/requisites" element={<ExplorationPage />} />
+
             <Route path="/" element={<Navigate to="/search" replace />} />
+            <Route
+              path="/course/:courseCode/:courseNum"
+              element={<CourseInfoPage />}
+            />
           </Routes>
         </main>
       </div>
