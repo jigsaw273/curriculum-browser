@@ -36,7 +36,16 @@ const Tree = ({ prereq }) => {
 export default function CourseTree({ course, prereqData, postreqData }) {
   return (
     <div className="course-tree">
-      <h2>{course}</h2>
+      <ul>
+        {prereqData ? (
+          postreqData.map((course, i) => <li key={i}>{course}</li>)
+        ) : (
+          <p>No Unlocks</p>
+        )}
+      </ul>
+      <h2>
+        <b>{course}</b>
+      </h2>
       {prereqData && prereqData.clauses.length > 0 ? (
         <Tree prereq={prereqData} />
       ) : (
