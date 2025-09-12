@@ -22,6 +22,7 @@ export default function YearPlannerPage() {
         c.course_code === course.course_code &&
         c.course_num === course.course_num
     );
+
     if (alreadyExists) return;
 
     setSelectedCourses((prev) => [...prev, course]);
@@ -111,6 +112,7 @@ export default function YearPlannerPage() {
   function DraggableCourse({ course }) {
     const { attributes, listeners, setNodeRef, transform } = useDraggable({
       id: course.course_code + course.course_num,
+      tris: course.trimestersOffered,
     });
 
     const style = {
@@ -151,6 +153,10 @@ export default function YearPlannerPage() {
 
   function onDragEnd({ over, active }) {
     if (!over) return;
+    const columnNameMap = {
+      tri1: "Trimester 1",
+      tri2: "Trimester 2",
+    };
 
     //Get id of the col where course was dropped
     const sourceCol = Object.keys(columns).find((col) =>
@@ -165,6 +171,18 @@ export default function YearPlannerPage() {
     );
 
     if (sourceCol === over.id) return; // dropped in same column, do nothing
+
+    // Determine allowed trimesters
+    const allowedTrimesters = movedCourse.trimestersOffered.flatMap((t) =>
+      t.includes("|") ? t.split("|").map((s) => s.trim()) : t
+    );
+
+    if (over.id !== "bin" && over.id !== "plan") {
+      if (!allowedTrimesters.includes(columnNameMap[over.id])) {
+        console.log("does not include");
+        return;
+      }
+    }
 
     setColumns((prev) => {
       const newCols = { ...prev };
