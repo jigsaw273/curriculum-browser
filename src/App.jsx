@@ -14,6 +14,8 @@ import SearchPage from "./pages/SearchPage";
 import ForwardPlannerCard from "./features/temp/ForwardPlannerCard";
 import CourseInfoPage from "./pages/CourseInfoPage";
 import RequisiteFinder from "./features/temp/RequisiteFinder";
+import YearPlannerPage from "./pages/YearPlannerPage";
+import DragDropPage from "./pages/DragDropPage";
 
 function App() {
   const [navVisible, setNavVisible] = useState(true);
@@ -65,6 +67,12 @@ function App() {
             >
               Requisite Finder
             </Link>
+            <Link
+              to="/yearplanner"
+              className="text-white px-4 py-2 rounded hover:bg-[#0e2424]"
+            >
+              Year Planner
+            </Link>
             {/* <button
               onClick={toggleNav}
               className="px-2 py-1 text-sm bg-dark-green rounded hover:bg-gray-400"
@@ -81,8 +89,8 @@ function App() {
               <Route path="/search" element={<SearchPage />} />
               <Route path="/tree" element={<ForwardPlannerCard />} />
               <Route path="/degree" element={<ForwardPlanner />} />
-              <Route path="/requisites" element={<ExplorationPage />} />
-
+              <Route path="/requisites" element={<DragDropPage />} />
+              <Route path="/yearplanner" element={<YearPlannerPage />} />
               <Route path="/" element={<Navigate to="/search" replace />} />
               <Route
                 path="/course/:courseCode/:courseNum"
