@@ -39,10 +39,19 @@ export default function useCourseSearch(
       );
     }
 
+    // if (filters.trimester.length > 0) {
+    //   filtered = filtered.filter((course) =>
+    //     filters.trimester.includes(course.trimesterOffered)
+    //   );
+    // }
+
     if (filters.trimester.length > 0) {
-      filtered = filtered.filter((course) =>
-        filters.trimester.includes(course.trimesterOffered)
-      );
+      filtered = filtered.filter((course) => {
+        const offered = course.trimestersOffered.flatMap((t) =>
+          t.includes("|") ? t.split("|").map((s) => s.trim()) : [t]
+        );
+        return offered.some((t) => filters.trimester.includes(t));
+      });
     }
 
     // Apply year filters if any are selected
