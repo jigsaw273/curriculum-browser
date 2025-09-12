@@ -3,29 +3,45 @@ import useCourseSearch from "../hooks/useCourseSearch";
 import SearchBar from "../features/search/SearchBar";
 import { DndContext, useDraggable, useDroppable } from "@dnd-kit/core";
 
+// helper for stable ids
+const idFor = (c) => `${c.course_code}-${c.course_num}`;
+
 export default function YearPlannerPage() {
   const { searchInput, setSearchInput, results } = useCourseSearch();
   const [selectedCourses, setSelectedCourses] = useState([]);
 
+  const [columns, setColumns] = useState({
+    plan: [],
+    tri1: [],
+    tri2: [],
+  });
+
   function addCourse(course) {
-    setSelectedCourses((prev) => {
-      // Avoid duplicates
-      if (
-        prev.some(
-          (c) =>
-            c.course_code === course.course_code &&
-            c.course_num === course.course_num
-        )
-      ) {
-        return prev;
-      }
-      return [...prev, course];
-    });
+    const alreadyExists = selectedCourses.some(
+      (c) =>
+        c.course_code === course.course_code &&
+        c.course_num === course.course_num
+    );
+    if (alreadyExists) return;
+
+    setSelectedCourses((prev) => [...prev, course]);
+
+    setColumns((prev) => ({
+      ...prev,
+      plan: [...prev.plan, course],
+    }));
   }
 
   function removeCourse(course) {
+    // only remove if it's currently in plan
+    const inPlan = columns.plan.some(
+      (c) =>
+        c.course_code === course.course_code &&
+        c.course_num === course.course_num
+    );
+    if (!inPlan) return;
+
     setSelectedCourses((prev) =>
-      // Avoid duplicates
       prev.filter(
         (c) =>
           !(
@@ -34,6 +50,18 @@ export default function YearPlannerPage() {
           )
       )
     );
+
+    // CORRECT: update columns object, not return an array
+    setColumns((prev) => ({
+      ...prev,
+      plan: prev.plan.filter(
+        (c) =>
+          !(
+            c.course_code === course.course_code &&
+            c.course_num === course.course_num
+          )
+      ),
+    }));
   }
 
   return (
@@ -53,26 +81,107 @@ export default function YearPlannerPage() {
             </div>
           ))}
         </div>
-        <div>
-          <h1>
-            <b>Plan to Take Courses</b>
-          </h1>
-          {selectedCourses.map((selected) => (
-            <div
-              className="p-4 bg-indigo-200 m-4 hover:bg-indigo-400"
-              key={selected.course_code + selected.course_num}
-              onClick={() => removeCourse(selected)}
-            >
-              <h1>
-                {selected.course_code + selected.course_num} -{" "}
-                {selected.course_name}
-              </h1>
-            </div>
-          ))}
-        </div>
-        <div className="flex max-w-1/3 bg-lime-100">Sem 1</div>
-        <div className="flex max-w-1/3 bg-fuchsia-100">Sem 2</div>
+
+        <DndContext onDragEnd={onDragEnd}>
+          <DroppableColumn
+            id="plan"
+            title="Plan to Take"
+            courses={columns.plan}
+          />
+          <DroppableColumn
+            id="tri1"
+            title="Semester 1"
+            courses={columns.tri1}
+          />
+          <DroppableColumn
+            id="tri2"
+            title="Semester 2"
+            courses={columns.tri2}
+          />
+          <DroppableColumn
+            id="bin"
+            title="🗑 Drag here to remove"
+            courses={[]}
+          />
+        </DndContext>
       </div>
     </>
   );
+
+  function DraggableCourse({ course }) {
+    const { attributes, listeners, setNodeRef, transform } = useDraggable({
+      id: course.course_code + course.course_num,
+    });
+
+    const style = {
+      transform: transform
+        ? `translate3d(${transform.x}px, ${transform.y}px, 0)`
+        : undefined,
+    };
+
+    return (
+      <div
+        onClick={() => removeCourse(course)}
+        className="h-8 bg-violet-100 p-2 m-4"
+        ref={setNodeRef}
+        {...listeners}
+        {...attributes}
+        style={style}
+      >
+        <p>
+          {course.course_code + course.course_num} - {course.course_name}
+        </p>
+      </div>
+    );
+  }
+
+  function DroppableColumn({ id, title, courses, children }) {
+    const { setNodeRef, isOver } = useDroppable({ id });
+
+    return (
+      <div ref={setNodeRef}>
+        <h2 className="font-bold mb-2">{title}</h2>
+        {courses.map((c) => (
+          <DraggableCourse key={c.course_code + c.course_num} course={c} />
+        ))}
+        {children}
+      </div>
+    );
+  }
+
+  function onDragEnd({ over, active }) {
+    if (!over) return;
+
+    //Get id of the col where course was dropped
+    const sourceCol = Object.keys(columns).find((col) =>
+      columns[col].some((c) => c.course_code + c.course_num === active.id)
+    );
+
+    if (!sourceCol) return;
+
+    //Get id of the course that's moving
+    const movedCourse = columns[sourceCol].find(
+      (c) => c.course_code + c.course_num === active.id
+    );
+
+    if (sourceCol === over.id) return; // dropped in same column, do nothing
+
+    setColumns((prev) => {
+      const newCols = { ...prev };
+      newCols[sourceCol] = newCols[sourceCol].filter(
+        (c) => c.course_code + c.course_num !== active.id
+      );
+      // If dropped in bin, don't add anywhere else
+      if (over.id !== "bin") {
+        newCols[over.id] = [...newCols[over.id], movedCourse];
+      }
+      return newCols;
+    });
+
+    if (over.id === "bin") {
+      setSelectedCourses((prev) =>
+        prev.filter((c) => !(idFor(c) === idFor(movedCourse)))
+      );
+    }
+  }
 }
