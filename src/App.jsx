@@ -15,6 +15,7 @@ import ForwardPlannerCard from "./features/temp/ForwardPlannerCard";
 import CourseInfoPage from "./pages/CourseInfoPage";
 import RequisiteFinder from "./features/temp/RequisiteFinder";
 import YearPlannerPage from "./pages/YearPlannerPage";
+import MyTimetablePage from "./pages/MyTimetablePage";
 
 function App() {
   const [navVisible, setNavVisible] = useState(true);
@@ -64,7 +65,7 @@ function App() {
               to="/requisites"
               className="text-white px-4 py-2 rounded hover:bg-[#0e2424]"
             >
-              Requisite Finder
+              My Timetable
             </Link>
             <Link
               to="/yearplanner"
@@ -88,7 +89,7 @@ function App() {
               <Route path="/search" element={<SearchPage />} />
               <Route path="/tree" element={<ForwardPlannerCard />} />
               <Route path="/degree" element={<ForwardPlanner />} />
-              <Route path="/requisites" element={<RequisiteFinder />} />
+              <Route path="/requisites" element={<MyTimetablePage />} />
               <Route path="/yearplanner" element={<YearPlannerPage />} />
               <Route path="/" element={<Navigate to="/search" replace />} />
               <Route

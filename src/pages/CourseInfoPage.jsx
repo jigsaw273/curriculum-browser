@@ -5,11 +5,13 @@ import { courseDetails } from "../data/courseDetails";
 import { unlockGraph } from "../data/unlocks";
 import CourseTree from "../features/courseTree/CourseTree";
 import Timetable from "../features/timetable/Timetable";
+import useTimetableStore from "../hooks/useTimetableStore";
 
 export default function CourseInfoPage() {
   const { courseCode, courseNum } = useParams();
   const courseName = courseCode + courseNum;
   const course = courseDetails[courseName];
+  const addCourse = useTimetableStore((state) => state.addCourse);
   const validOfferings = courseDetails[courseName].offerings.filter(
     (off) => off.lectureDays.length > 0
   );
@@ -77,12 +79,16 @@ export default function CourseInfoPage() {
               {activeOffering.lectureTimes.join(", ")}
             </p>
             <div className="p-8">
-              <Timetable
+              {/* <Timetable
                 days={activeOffering.lectureDays}
                 times={activeOffering.lectureTimes}
                 courseName={courseName}
-              />
+              /> */}
+              <Timetable offering={activeOffering} />
             </div>
+            <button onClick={() => addCourse(activeOffering)}>
+              Add to my timetable
+            </button>
           </div>
         )}
       </div>
