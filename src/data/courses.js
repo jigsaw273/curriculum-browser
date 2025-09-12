@@ -241,6 +241,7 @@ export const courseDependencies = {
     prerequisites: {
       type: "AND",
       clauses: [
+        { type: "COURSE", course: "ENGR101" },
         {
           type: "OR",
           clauses: [
@@ -248,7 +249,6 @@ export const courseDependencies = {
             { type: "COURSE", course: "COMP112" },
           ],
         },
-        { type: "COURSE", course: "ENGR101" },
       ],
     },
     corequisites: {
