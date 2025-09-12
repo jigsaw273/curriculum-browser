@@ -84,9 +84,23 @@ export default function CourseInfoPage() {
                 times={activeOffering.lectureTimes}
                 courseName={courseName}
               /> */}
-              <Timetable offering={activeOffering} />
+              <Timetable
+                offering={{
+                  ...activeOffering,
+                  courseName: courseName,
+                  courseTitle: course.course_name,
+                }}
+              />
             </div>
-            <button onClick={() => addCourse(activeOffering)}>
+            <button
+              onClick={() =>
+                addCourse({
+                  ...activeOffering,
+                  courseName: courseName,
+                  courseTitle: course.course_name,
+                })
+              }
+            >
               Add to my timetable
             </button>
           </div>
