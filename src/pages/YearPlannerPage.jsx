@@ -6,12 +6,18 @@ import { DndContext, useDraggable, useDroppable } from "@dnd-kit/core";
 export default function YearPlannerPage() {
   const { searchInput, setSearchInput, results } = useCourseSearch();
   const [selectedCourses, setSelectedCourses] = useState([]);
+  const [activeCourse, setActiveCourse] = useState(null);
 
   const [columns, setColumns] = useState({
     plan: [],
     tri1: [],
     tri2: [],
   });
+
+  const columnNameMap = {
+    tri1: "Trimester 1",
+    tri2: "Trimester 2",
+  };
 
   function addCourse(course) {
     const alreadyExists = selectedCourses.some(
@@ -62,26 +68,39 @@ export default function YearPlannerPage() {
           ))}
         </div>
 
-        <DndContext onDragEnd={onDragEnd}>
+        <DndContext
+          onDragStart={({ active }) => {
+            const course = Object.values(columns)
+              .flat()
+              .find((c) => c.courseId === active.id);
+            setActiveCourse(course || null);
+          }}
+          onDragEnd={onDragEnd}
+          onDragCancel={() => setActiveCourse(null)}
+        >
           <DroppableColumn
             id="plan"
             title="Plan to Take"
             courses={columns.plan}
+            activeCourse={activeCourse}
           />
           <DroppableColumn
             id="tri1"
-            title="Semester 1"
+            title="Trimester 1"
             courses={columns.tri1}
+            activeCourse={activeCourse}
           />
           <DroppableColumn
             id="tri2"
-            title="Semester 2"
+            title="Trimester 2"
             courses={columns.tri2}
+            activeCourse={activeCourse}
           />
           <DroppableColumn
             id="bin"
             title="🗑 Drag here to remove"
             courses={[]}
+            activeCourse={activeCourse}
           />
         </DndContext>
       </div>
@@ -116,26 +135,29 @@ export default function YearPlannerPage() {
     );
   }
 
-  function DroppableColumn({ id, title, courses, children }) {
+  function DroppableColumn({ id, title, courses, activeCourse }) {
     const { setNodeRef, isOver } = useDroppable({ id });
 
+    let isValidDrop = id === "plan" || id === "bin";
+    if ((id === "tri1" || id === "tri2") && activeCourse) {
+      isValidDrop = activeCourse.trimestersOffered.includes(columnNameMap[id]);
+    }
     return (
-      <div ref={setNodeRef}>
+      <div
+        ref={setNodeRef}
+        className={` ${isOver && isValidDrop ? "bg-green-200" : "bg-gray-100"}`}
+      >
         <h2 className="font-bold mb-2">{title}</h2>
         {courses.map((c) => (
           <DraggableCourse key={c.courseId} course={c} />
         ))}
-        {children}
+        {/* {children} */}
       </div>
     );
   }
 
   function onDragEnd({ over, active }) {
     if (!over) return;
-    const columnNameMap = {
-      tri1: "Trimester 1",
-      tri2: "Trimester 2",
-    };
 
     //Get id of the col where course was dropped
     const sourceCol = Object.keys(columns).find((col) =>
