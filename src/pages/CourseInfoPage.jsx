@@ -28,7 +28,7 @@ export default function CourseInfoPage() {
     <div className="p-12">
       <h1 className="text-2xl font-bold">{courseName}</h1>
       <h1 className="text-2xl font-bold">
-        {courseDetails[courseName].course_name}
+        {courseDetails[courseName].courseName}
       </h1>
       <h2 className="mt-4 mb-1 text-xl">Course Description</h2>
       <p className="w-4xl">{courseDetails[courseName].courseDescription}</p>
@@ -88,7 +88,7 @@ export default function CourseInfoPage() {
                 offering={{
                   ...activeOffering,
                   courseName: courseName,
-                  courseTitle: course.course_name,
+                  courseTitle: course.courseName,
                 }}
               />
             </div>
@@ -97,7 +97,7 @@ export default function CourseInfoPage() {
                 addCourse({
                   ...activeOffering,
                   courseName: courseName,
-                  courseTitle: course.course_name,
+                  courseTitle: course.courseName,
                 })
               }
             >

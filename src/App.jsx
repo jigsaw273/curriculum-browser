@@ -13,6 +13,7 @@ import CourseInfoPage from "./pages/CourseInfoPage";
 import YearPlannerPage from "./pages/YearPlannerPage";
 import MyTimetablePage from "./pages/MyTimetablePage";
 import SearchPage from "./pages/SearchPage";
+import ExtendedCourseFlow from "./pages/ExtendedCourseFlow";
 
 function App() {
   const [navVisible, setNavVisible] = useState(true);
@@ -23,6 +24,7 @@ function App() {
     { to: "/degree", label: "Forward Planner" },
     { to: "/requisites", label: "My Timetable" },
     { to: "/yearplanner", label: "Year Planner" },
+    { to: "/fplanner", label: "Extended" },
   ];
 
   return (
@@ -70,6 +72,7 @@ function App() {
               <Route path="/degree" element={<ForwardPlanner />} />
               <Route path="/requisites" element={<MyTimetablePage />} />
               <Route path="/yearplanner" element={<YearPlannerPage />} />
+              <Route path="/fplanner" element={<ExtendedCourseFlow />} />
               <Route path="/" element={<Navigate to="/search" replace />} />
               <Route
                 path="/course/:courseCode/:courseNum"

@@ -21,9 +21,9 @@ export default function useCourseSearch(
     if (searchInput) {
       const search = searchInput.toLowerCase();
       filtered = filtered.filter((course) => {
-        const code = course.course_code || "";
-        const num = course.course_num || "";
-        const name = course.course_name || "";
+        const code = course.courseCode || "";
+        const num = course.courseNum || "";
+        const name = course.courseName || "";
         return (
           (code + num).toLowerCase().includes(search) ||
           name.toLowerCase().includes(search)
@@ -35,7 +35,7 @@ export default function useCourseSearch(
     // Make this modular later
     if (filters.courses.length > 0) {
       filtered = filtered.filter((course) =>
-        filters.courses.includes(course.course_code)
+        filters.courses.includes(course.courseCode)
       );
     }
 

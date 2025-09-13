@@ -7,7 +7,7 @@ export default function TableSearchResults({ results }) {
 
   const handleRowClick = (course) => {
     // navigate(`/course/${course.course_code}/${course.course_num}`);
-    window.open(`/course/${course.course_code}/${course.course_num}`, "_blank");
+    window.open(`/course/${course.courseCode}/${course.courseNum}`, "_blank");
 
     // Opens VUW official website
     // const url = `https://www.wgtn.ac.nz/courses/${course.course_code}/${course.course_num}`;
@@ -33,8 +33,8 @@ export default function TableSearchResults({ results }) {
               onClick={() => handleRowClick(item)}
               style={{ cursor: "pointer" }}
             >
-              <td>{item.course_code + item.course_num}</td>
-              <td>{item.course_name}</td>
+              <td>{item.courseId}</td>
+              <td>{item.courseName}</td>
               <td>{item.courseCoordinator}</td>
               <td>{item.trimesterOffered}</td>
             </tr>
