@@ -3,7 +3,8 @@ import SearchBar from "../features/search/SearchBar.jsx";
 import useCourseSearch from "../hooks/useCourseSearch.js";
 import { useForwardPlanner } from "../hooks/useForwardPlanner.js";
 import { courseData } from "../data/prereq";
-import { unlockGraph } from "../data/unlocks";
+import { useNavigate } from "react-router-dom";
+
 import ReactFlow, {
   Background,
   Controls,
@@ -62,6 +63,7 @@ export default function ExtendedCourseFlow() {
 
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  //const navigate = useNavigate();
 
   // Add/remove from takenCourses
   function addCourse(course) {
@@ -79,42 +81,55 @@ export default function ExtendedCourseFlow() {
 
   // Build the graph when "Calculate" is clicked
   function buildGraph() {
-    const allNodes = courseData.courses.map((course) => {
-      let backgroundColor = "#fff";
-      let color = "black";
+    // Collect the set of courses we want to display
+    const visibleIds = new Set([
+      ...selectedCourses,
+      ...unlockedCourses,
+      ...possibleUnlocks,
+    ]);
 
-      if (selectedCourses.includes(course.id)) {
-        backgroundColor = "#3e3cafff"; // taken
-        color = "white";
-      } else if (unlockedCourses.includes(course.id)) {
-        backgroundColor = "#1fa660ff"; // eligible
-      } else if (possibleUnlocks.includes(course.id)) {
-        backgroundColor = "#c2c2c7ff"; // possible
-      }
+    // Only include nodes that are visible
+    const allNodes = courseData.courses
+      .filter((course) => visibleIds.has(course.id))
+      .map((course) => {
+        let backgroundColor = "#fff";
+        let color = "black";
 
-      return {
-        id: course.id,
-        data: { label: course.id },
-        draggable: true,
-        style: {
-          backgroundColor,
-          color,
-          border: "1px solid #ddd",
-          borderRadius: "5px",
-          padding: "10px",
-        },
-      };
-    });
+        if (selectedCourses.includes(course.id)) {
+          backgroundColor = "#3e3cafff"; // taken
+          color = "white";
+        } else if (unlockedCourses.includes(course.id)) {
+          backgroundColor = "#1fa660ff"; // true unlock
+        } else if (possibleUnlocks.includes(course.id)) {
+          backgroundColor = "#c2c2c7ff"; // partial unlock
+        }
 
+        return {
+          id: course.id,
+          data: { label: course.id },
+          draggable: true,
+          style: {
+            backgroundColor,
+            color,
+            border: "1px solid #ddd",
+            borderRadius: "5px",
+            padding: "10px",
+          },
+        };
+      });
+
+    // Only include prerequisite edges between visible nodes
     const prereqEdges = courseData.courses.flatMap((course) =>
-      course.prerequisites.map((prereq) => ({
-        id: `prereq-${prereq}-${course.id}`,
-        source: prereq,
-        target: course.id,
-        type: "smoothstep",
-        markerEnd: { type: MarkerType.Arrow },
-        style: { stroke: "#9ea1bbff" },
-      }))
+      course.prerequisites
+        .filter((prereq) => visibleIds.has(prereq) && visibleIds.has(course.id))
+        .map((prereq) => ({
+          id: `prereq-${prereq}-${course.id}`,
+          source: prereq,
+          target: course.id,
+          type: "smoothstep",
+          markerEnd: { type: MarkerType.Arrow },
+          style: { stroke: "#9ea1bbff" },
+        }))
     );
 
     const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(
@@ -152,10 +167,32 @@ export default function ExtendedCourseFlow() {
         ))}
       </div>
 
-      {/* Calculate button */}
+      {/* Calculate button
       <button className="m-4 p-2 bg-blue-500 text-white" onClick={buildGraph}>
         Calculate
-      </button>
+      </button> */}
+
+      {/* Calculate + Clear buttons */}
+      <div className="m-4 flex gap-2">
+        <button
+          className="p-2 bg-blue-500 text-black rounded"
+          onClick={buildGraph}
+        >
+          Calculate
+        </button>
+        <button
+          className="p-2 bg-gray-400 text-black rounded"
+          onClick={() => {
+            setTakenCourses([]);
+            setNodes([]);
+            setEdges([]);
+            // also clear selectedCourses in hook
+            selectedCourses.forEach((id) => toggleCourse(id));
+          }}
+        >
+          Clear
+        </button>
+      </div>
 
       {/* Graph */}
       <div style={{ width: "100%", height: "70vh" }}>
@@ -164,7 +201,16 @@ export default function ExtendedCourseFlow() {
           edges={edges}
           onNodesChange={onNodesChange}
           onEdgesChange={onEdgesChange}
-          onNodeClick={(_, node) => toggleCourse(node.id)}
+          //onNodeClick={(_, node) => toggleCourse(node.id)}
+          onNodeClick={(_, node) => {
+            // navigate to /course/{SUBJECT}/{NUMBER}
+            // assuming course.id looks like AIML320
+            const match = node.id.match(/^([A-Z]+)(\d{3})$/);
+            if (match) {
+              const [, subject, number] = match;
+              window.open(`/course/${subject}/${number}`, "_blank");
+            }
+          }}
           fitView
           fitViewOptions={{ padding: 0.2 }}
         >
