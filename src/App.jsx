@@ -24,7 +24,7 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen flex flex-col bg-off-white">
-        {/* Top bar */}
+        {/* Top bar
         <header className="w-full h-12 bg-gray-200 flex items-center px-4 justify-between">
           <h1 className="text-lg font-semibold">Logo</h1>
           <button
@@ -33,7 +33,7 @@ function App() {
           >
             {navVisible ? "<" : ">"}
           </button>
-        </header>
+        </header> */}
 
         {/* Sidebar + main content */}
         <div className="flex flex-1 relative">

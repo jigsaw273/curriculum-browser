@@ -6,7 +6,8 @@ export default function TableSearchResults({ results }) {
   const navigate = useNavigate();
 
   const handleRowClick = (course) => {
-    navigate(`/course/${course.course_code}/${course.course_num}`);
+    // navigate(`/course/${course.course_code}/${course.course_num}`);
+    window.open(`/course/${course.course_code}/${course.course_num}`, "_blank");
 
     // Opens VUW official website
     // const url = `https://www.wgtn.ac.nz/courses/${course.course_code}/${course.course_num}`;
