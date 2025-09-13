@@ -8,18 +8,22 @@ import {
 } from "react-router-dom";
 import "./App.css";
 import ForwardPlanner from "./features/fowardplanner/ForwardPlanner";
-import DegreePlanner from "./pages/DegreePlanner";
-import ExplorationPage from "./pages/ExplorationPage";
-import SearchPage from "./pages/SearchPage";
 import ForwardPlannerCard from "./features/temp/ForwardPlannerCard";
 import CourseInfoPage from "./pages/CourseInfoPage";
-import RequisiteFinder from "./features/temp/RequisiteFinder";
 import YearPlannerPage from "./pages/YearPlannerPage";
 import MyTimetablePage from "./pages/MyTimetablePage";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   const [navVisible, setNavVisible] = useState(true);
-  const toggleNav = () => setNavVisible(!navVisible);
+
+  const navLinks = [
+    { to: "/search", label: "Course Search" },
+    { to: "/tree", label: "Dependency Graph" },
+    { to: "/degree", label: "Forward Planner" },
+    { to: "/requisites", label: "My Timetable" },
+    { to: "/yearplanner", label: "Year Planner" },
+  ];
 
   return (
     <Router>
@@ -39,51 +43,26 @@ function App() {
         <div className="flex flex-1 relative">
           {/* Sidebar */}
           <nav
-            className={`bg-dark-green w-64 p-4 flex flex-col gap-4 absolute top-0 left-0 h-full transform transition-transform duration-300 ${
+            className={`bg-dark-green w-64 p-4 flex flex-col gap-4 absolute top-0 left-0 h-full transform transition-transform duration-300 pt-14 ${
               navVisible ? "translate-x-0" : "-translate-x-full"
             }`}
           >
-            <Link
-              to="/search"
-              className="text-white px-4 py-2 rounded hover:bg-[#0e2424]"
-            >
-              Course Search
-            </Link>
-            <Link
-              to="/tree"
-              className="text-white px-4 py-2 rounded hover:bg-[#0e2424]"
-            >
-              Dependency Graph
-            </Link>
-            <Link
-              to="/degree"
-              className="text-white px-4 py-2 rounded hover:bg-[#0e2424]"
-            >
-              Forward Planner
-            </Link>
-            <Link
-              to="/requisites"
-              className="text-white px-4 py-2 rounded hover:bg-[#0e2424]"
-            >
-              My Timetable
-            </Link>
-            <Link
-              to="/yearplanner"
-              className="text-white px-4 py-2 rounded hover:bg-[#0e2424]"
-            >
-              Year Planner
-            </Link>
-            {/* <button
-              onClick={toggleNav}
-              className="px-2 py-1 text-sm bg-dark-green rounded hover:bg-gray-400"
-            >
-              {navVisible ? "<" : ">"}
-            </button> */}
+            {navLinks.map(({ to, label }) => (
+              <Link
+                key={to}
+                to={to}
+                className="text-white px-4 py-2 rounded hover:bg-[#0e2424]"
+              >
+                {label}
+              </Link>
+            ))}
           </nav>
 
           {/* Main content */}
           <main
-            className={`flex-1 p-4 transition-all duration-300 ${navVisible ? "ml-64" : "ml-0"}`}
+            className={`flex-1 p-6 transition-all duration-300 ${
+              navVisible ? "ml-64" : "ml-0"
+            }`}
           >
             <Routes>
               <Route path="/search" element={<SearchPage />} />
