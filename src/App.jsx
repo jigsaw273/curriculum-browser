@@ -6,6 +6,14 @@ import {
   Link,
   Navigate,
 } from "react-router-dom";
+import {
+  FaSearch,
+  FaProjectDiagram,
+  FaCalendarDay,
+  FaList,
+  FaLayerGroup,
+  FaArrowRight,
+} from "react-icons/fa";
 import "./App.css";
 import ForwardPlanner from "./features/fowardplanner/ForwardPlanner";
 import ForwardPlannerCard from "./features/temp/ForwardPlannerCard";
@@ -19,12 +27,12 @@ function App() {
   const [navVisible, setNavVisible] = useState(true);
 
   const navLinks = [
-    { to: "/search", label: "Course Search" },
-    { to: "/tree", label: "Dependency Graph" },
-    { to: "/degree", label: "Forward Planner" },
-    { to: "/requisites", label: "My Timetable" },
-    { to: "/yearplanner", label: "Year Planner" },
-    { to: "/fplanner", label: "Extended" },
+    { to: "/search", label: "Course Search", icon: FaSearch },
+    { to: "/tree", label: "Dependency Graph", icon: FaProjectDiagram },
+    { to: "/degree", label: "Forward Planner", icon: FaCalendarDay },
+    { to: "/requisites", label: "My Timetable", icon: FaList },
+    { to: "/yearplanner", label: "Year Planner", icon: FaLayerGroup },
+    { to: "/fplanner", label: "Extended", icon: FaArrowRight },
   ];
 
   return (
@@ -49,12 +57,13 @@ function App() {
               navVisible ? "translate-x-0" : "-translate-x-full"
             }`}
           >
-            {navLinks.map(({ to, label }) => (
+            {navLinks.map(({ to, label, icon: Icon }) => (
               <Link
                 key={to}
                 to={to}
-                className="text-white px-4 py-2 rounded hover:bg-[#0e2424]"
+                className="flex items-center gap-4 text-white px-4 py-2 rounded hover:bg-[#0e2424]"
               >
+                <Icon className="w-5 h-5" />
                 {label}
               </Link>
             ))}
