@@ -4,6 +4,7 @@ import useCourseSearch from "../hooks/useCourseSearch.js";
 import { useForwardPlanner } from "../hooks/useForwardPlanner.js";
 import { courseData } from "../data/prereq";
 import { useNavigate } from "react-router-dom";
+import "./Extended.css";
 
 import ReactFlow, {
   Background,
@@ -63,7 +64,7 @@ export default function ExtendedCourseFlow() {
 
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
-  //const navigate = useNavigate();
+  const [searchClicked, setSearchClicked] = useState(false);
 
   // Add/remove from takenCourses
   function addCourse(course) {
@@ -143,84 +144,105 @@ export default function ExtendedCourseFlow() {
   }
 
   return (
-    <div className="App">
-      {/* Search + Select */}
-      <SearchBar setSearchInput={setSearchInput} />
-      <div>
-        {results.map((course) => (
-          <div
-            key={course.courseId}
-            className="p-4 bg-gray-200 m-4 hover:bg-gray-300"
-            onClick={() => addCourse(course)}
-          >
-            {course.courseId} - {course.courseName}
+    <div className="flex h-full gap-4 p-6 bg-gray-50">
+      {/* Left panel */}
+      <div className="w-80 bg-white shadow-md rounded-2xl p-6 flex flex-col">
+        <h2 className="text-lg font-semibold mb-2">Course Planner</h2>
+        <p className="text-sm text-gray-500 mb-4">
+          Search for courses you’ve already taken, then calculate your unlocks.
+        </p>
+
+        {/* Search */}
+        <div className="relative mb-4">
+          <div className="special-search">
+            <SearchBar setSearchInput={setSearchInput} />
           </div>
-        ))}
-      </div>
+          {searchInput && results.length > 0 && (
+            <div className="absolute top-full mt-2 w-full bg-white border border-gray-200 rounded-lg shadow-lg z-10 max-h-56 overflow-y-auto">
+              {results.map((course) => (
+                <div
+                  key={course.courseId}
+                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  onClick={() => {
+                    addCourse(course);
+                    setSearchInput("");
+                  }}
+                >
+                  {course.courseId} - {course.courseName}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
 
-      {/* Taken courses */}
-      <div>
-        {takenCourses.map((course) => (
-          <button key={course.courseId} onClick={() => removeCourse(course)}>
-            {course.courseName}
+        {/* Taken courses */}
+        {takenCourses.length > 0 && (
+          <>
+            <h3 className="text-sm font-medium mb-2 text-gray-700">
+              Taken Courses
+            </h3>
+            <div className="flex flex-wrap gap-2 mb-4">
+              {takenCourses.map((course) => (
+                <button
+                  key={course.courseId}
+                  onClick={() => removeCourse(course)}
+                  className="px-3 py-2 text-sm bg-blue-100 text-blue-700 hover:bg-blue-200 rounded-full"
+                >
+                  {course.courseId} ✕
+                </button>
+              ))}
+            </div>
+          </>
+        )}
+
+        {/* Actions */}
+        <div className="flex gap-2 mt-auto">
+          <button
+            className="flex-1 py-2 bg-blue-500 text-black rounded-lg hover:bg-blue-600 transition"
+            onClick={buildGraph}
+          >
+            Calculate
           </button>
-        ))}
+          <button
+            className="flex-1 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition"
+            onClick={() => {
+              setTakenCourses([]);
+              setNodes([]);
+              setEdges([]);
+              selectedCourses.forEach((id) => toggleCourse(id));
+            }}
+          >
+            Clear
+          </button>
+        </div>
       </div>
 
-      {/* Calculate button
-      <button className="m-4 p-2 bg-blue-500 text-white" onClick={buildGraph}>
-        Calculate
-      </button> */}
-
-      {/* Calculate + Clear buttons */}
-      <div className="m-4 flex gap-2">
-        <button
-          className="p-2 bg-blue-500 text-black rounded"
-          onClick={buildGraph}
-        >
-          Calculate
-        </button>
-        <button
-          className="p-2 bg-gray-400 text-black rounded"
-          onClick={() => {
-            setTakenCourses([]);
-            setNodes([]);
-            setEdges([]);
-            // also clear selectedCourses in hook
-            selectedCourses.forEach((id) => toggleCourse(id));
-          }}
-        >
-          Clear
-        </button>
-      </div>
-
-      {/* Graph */}
-      <div style={{ width: "100%", height: "70vh" }}>
-        <ReactFlow
-          nodes={nodes}
-          edges={edges}
-          onNodesChange={onNodesChange}
-          onEdgesChange={onEdgesChange}
-          //onNodeClick={(_, node) => toggleCourse(node.id)}
-          onNodeClick={(_, node) => {
-            // navigate to /course/{SUBJECT}/{NUMBER}
-            // assuming course.id looks like AIML320
-            const match = node.id.match(/^([A-Z]+)(\d{3})$/);
-            if (match) {
-              const [, subject, number] = match;
-              window.open(`/course/${subject}/${number}`, "_blank");
-            }
-          }}
-          fitView
-          fitViewOptions={{ padding: 0.2 }}
-        >
-          <Panel position="top-right">
-            <button onClick={() => buildGraph("TB")}>Vertical</button>
-            <button onClick={() => buildGraph("LR")}>Horizontal</button>
-          </Panel>
-          <Background />
-          <Controls />
-        </ReactFlow>
+      {/* Graph panel */}
+      <div className="flex-1 bg-white rounded-2xl shadow-md p-4 flex flex-col">
+        <h2 className="text-lg font-semibold mb-2">Unlock Graph</h2>
+        <p className="text-sm text-gray-500 mb-4">
+          Visualize which courses you’ve unlocked or partially unlocked.
+        </p>
+        <div className="flex-1 h-[70vh]">
+          <ReactFlow
+            nodes={nodes}
+            edges={edges}
+            onNodesChange={onNodesChange}
+            onEdgesChange={onEdgesChange}
+            onNodeClick={(_, node) => {
+              const match = node.id.match(/^([A-Z]+)(\d{3})$/);
+              if (match) {
+                const [, subject, number] = match;
+                window.open(`/course/${subject}/${number}`, "_blank");
+              }
+            }}
+            fitView
+            fitViewOptions={{ padding: 0.2 }}
+          >
+            <Background />
+            <Controls />
+          </ReactFlow>
+        </div>
       </div>
     </div>
   );

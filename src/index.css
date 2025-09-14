@@ -9,6 +9,16 @@
   --color-dark-purple: #4F517D;
 }
 
+:root {
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+}
+
+/* in index.css or App.css 
+button {
+  all: unset; removes all inherited/global styles
+}
+
 /*  
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;

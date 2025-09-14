@@ -1,22 +1,13 @@
-import { Table } from "react-bootstrap";
 import "./TableSearchResults.css";
-import { useNavigate } from "react-router-dom";
 
 export default function TableSearchResults({ results }) {
-  const navigate = useNavigate();
-
   const handleRowClick = (course) => {
-    // navigate(`/course/${course.course_code}/${course.course_num}`);
     window.open(`/course/${course.courseCode}/${course.courseNum}`, "_blank");
-
-    // Opens VUW official website
-    // const url = `https://www.wgtn.ac.nz/courses/${course.course_code}/${course.course_num}`;
-    // window.open(url, "_blank");
   };
 
   return (
     <div className="search-results">
-      <Table className="table">
+      <table className="custom-table">
         <thead>
           <tr>
             <th>Course Code</th>
@@ -29,18 +20,21 @@ export default function TableSearchResults({ results }) {
         <tbody>
           {results.map((item) => (
             <tr
-              key={item.faculty + item.code}
+              key={item.courseId}
               onClick={() => handleRowClick(item)}
-              style={{ cursor: "pointer" }}
+              className="clickable-row"
             >
               <td>{item.courseId}</td>
               <td>{item.courseName}</td>
-              <td>{item.courseCoordinator}</td>
-              <td>{item.trimesterOffered}</td>
+              <td>
+                {item.offerings.find((o) => o.courseCoordinator)
+                  ?.courseCoordinator || ""}
+              </td>
+              <td>{item.trimestersOffered}</td>
             </tr>
           ))}
         </tbody>
-      </Table>
+      </table>
     </div>
   );
 }

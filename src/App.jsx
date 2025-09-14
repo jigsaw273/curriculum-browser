@@ -24,11 +24,11 @@ import SearchPage from "./pages/SearchPage";
 import ExtendedCourseFlow from "./pages/ExtendedCourseFlow";
 
 function App() {
-  const [navVisible, setNavVisible] = useState(true);
+  const [collapsed, setCollapsed] = useState(true);
 
   const navLinks = [
     { to: "/search", label: "Course Search", icon: FaSearch },
-    { to: "/tree", label: "Dependency Graph", icon: FaProjectDiagram },
+    { to: "/tree", label: "Dependencies", icon: FaProjectDiagram },
     { to: "/degree", label: "Forward Planner", icon: FaCalendarDay },
     { to: "/requisites", label: "My Timetable", icon: FaList },
     { to: "/yearplanner", label: "Year Planner", icon: FaLayerGroup },
@@ -38,41 +38,40 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen flex flex-col bg-off-white">
-        {/* Top bar
-        <header className="w-full h-12 bg-gray-200 flex items-center px-4 justify-between">
-          <h1 className="text-lg font-semibold">Logo</h1>
-          <button
-            onClick={toggleNav}
-            className="px-2 py-1 text-sm bg-dark-green rounded hover:bg-gray-400"
-          >
-            {navVisible ? "<" : ">"}
-          </button>
-        </header> */}
+        <header className="bg-[#4f5a55] text-white py-2 px-4">VUWCourse</header>
 
-        {/* Sidebar + main content */}
         <div className="flex flex-1 relative">
-          {/* Sidebar */}
           <nav
-            className={`bg-dark-green w-64 p-4 flex flex-col gap-4 absolute top-0 left-0 h-full transform transition-transform duration-300 pt-14 ${
-              navVisible ? "translate-x-0" : "-translate-x-full"
-            }`}
+            className={`bg-light-green p-4 flex flex-col gap-4 absolute h-full pt-16 transition-all duration-300 
+              ${collapsed ? "w-20" : "w-64"}`}
           >
             {navLinks.map(({ to, label, icon: Icon }) => (
               <Link
                 key={to}
                 to={to}
-                className="flex items-center gap-4 text-white px-4 py-2 rounded hover:bg-[#0e2424]"
+                className="flex items-center gap-4 text-dark-green px-4 py-2 rounded hover:bg-[#90bb7c]"
               >
-                <Icon className="w-5 h-5" />
-                {label}
+                <Icon className="w-5 h-5 shrink-0" />
+                <span
+                  className={`whitespace-nowrap transition-all duration-300 overflow-hidden ${
+                    collapsed ? "opacity-0 w-0" : "opacity-100 w-auto"
+                  }`}
+                >
+                  {label}
+                </span>
               </Link>
             ))}
+            <button
+              onClick={() => setCollapsed(!collapsed)}
+              // className="!bg-light-green !border-0"
+            >
+              {collapsed ? ">" : "<"}
+            </button>
           </nav>
 
-          {/* Main content */}
           <main
             className={`flex-1 p-6 transition-all duration-300 ${
-              navVisible ? "ml-64" : "ml-0"
+              collapsed ? "ml-20" : "ml-64"
             }`}
           >
             <Routes>

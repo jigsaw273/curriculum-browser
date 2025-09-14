@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import "./Filters.css";
 
 const filterOptions = {
-  courses: ["SWEN", "ENGR", "COMP", "NWEN", "AIML", "CYBR", "RESE"],
-  yearlvl: ["100", "200", "300", "400", "500"],
+  courses: ["SWEN", "ENGR", "COMP", "NWEN", "AIML", "CYBR", "RESE", "EEEN"],
+  year: ["100", "200", "300", "400", "500"],
   trimester: ["Trimester 1", "Trimester 2", "Trimester 3"],
 };
 
@@ -11,7 +11,7 @@ const filterOptions = {
 export default function Filters({ onFilterChange }) {
   const [selectedFilters, setSelectedFilters] = useState({
     courses: [],
-    yearlvl: [],
+    year: [],
     trimester: [],
   });
 
@@ -27,8 +27,12 @@ export default function Filters({ onFilterChange }) {
 
   return (
     <div className="filter-container">
+      <h2 className="font-[Lexend]">Filters</h2>
       {Object.entries(filterOptions).map(([category, options]) => (
         <div key={category}>
+          <h4 className="my-2">
+            {category.charAt(0).toUpperCase() + category.slice(1)}
+          </h4>
           {options.map((option) => (
             <label className="filter-checkbox" key={option}>
               <input

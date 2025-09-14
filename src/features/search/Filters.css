@@ -1,13 +1,40 @@
 .filter-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.7rem;
-  margin: 1rem auto;
-  max-width: 1000px;
+  flex-direction: column;
+  gap: 1.5rem;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
+.filter-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
 
-.filter-checkbox input:checked ~ .checkmark {
-  background-color: #544ae7;
+.filter-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 0.25rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.25rem;
+}
+
+.filter-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #333;
+  cursor: pointer;
+}
+
+.filter-checkbox input {
+  accent-color: #4caf50; /* modern green */
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
 }

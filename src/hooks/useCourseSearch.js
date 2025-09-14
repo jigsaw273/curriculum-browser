@@ -9,7 +9,7 @@ export default function useCourseSearch(
   const [filters, setFilters] = useState(
     initialFilters || {
       courses: [],
-      yearlvl: [],
+      year: [],
       trimester: [],
     }
   );
@@ -55,10 +55,10 @@ export default function useCourseSearch(
     }
 
     // Apply year filters if any are selected
-    if (filters.yearlvl.length > 0) {
+    if (filters.year.length > 0) {
       filtered = filtered.filter((course) => {
         const courseNum = parseInt(course.courseLevel, 10);
-        return filters.yearlvl.some((year) => {
+        return filters.year.some((year) => {
           const yearNum = parseInt(year, 10);
           return courseNum == yearNum;
         });

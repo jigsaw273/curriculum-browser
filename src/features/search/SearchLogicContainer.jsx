@@ -7,9 +7,10 @@ import useCourseSearch from "../../hooks/useCourseSearch.js";
 export default function SearchLogicContainer({ setResults }) {
   const { searchInput, setSearchInput, filters, setFilters, results } =
     useCourseSearch();
+  const [displayResults, setDisplayResults] = useState([]);
 
   useEffect(() => {
-    setResults(results);
+    setDisplayResults(results);
   }, [results]);
 
   return (
@@ -18,7 +19,7 @@ export default function SearchLogicContainer({ setResults }) {
       <div className="filters-sidebar">
         <Filters onFilterChange={setFilters} />
       </div>
-      {/* //<TableSearchResults results={results} /> */}
+      <TableSearchResults results={results} />
     </>
   );
 }
