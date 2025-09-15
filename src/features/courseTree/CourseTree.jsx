@@ -63,7 +63,7 @@ export default function CourseTree({ course, prereqData, postreqData }) {
           {prereqData && prereqData.clauses.length > 0 ? (
             <Tree prereq={prereqData} />
           ) : (
-            <div className="node prereq-node">No postreqs</div>
+            <div className="node prereq-node">No prereqs</div>
           )}
         </li>
       </ul>

@@ -24,7 +24,7 @@ import SearchPage from "./pages/SearchPage";
 import ExtendedCourseFlow from "./pages/ExtendedCourseFlow";
 
 function App() {
-  const [collapsed, setCollapsed] = useState(true);
+  const [collapsed, setCollapsed] = useState(false);
 
   const navLinks = [
     { to: "/search", label: "Course Search", icon: FaSearch },

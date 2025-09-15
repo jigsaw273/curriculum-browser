@@ -17,6 +17,7 @@
     "@tailwindcss/vite": "^4.1.13",
     "bootstrap": "^5.3.6",
     "dagre": "^0.8.5",
+    "html2canvas": "^1.4.1",
     "react": "^19.1.0",
     "react-big-calendar": "^1.19.4",
     "react-bootstrap": "^2.10.9",

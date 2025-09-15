@@ -85,9 +85,13 @@ export default function ForwardPlanner() {
         source: prereq,
         target: course.id,
         type: "smoothstep",
-        markerEnd: { type: MarkerType.Arrow },
+        markerEnd: {
+          type: MarkerType.ArrowClosed,
+          width: 15,
+          height: 15,
+        },
         className: "prereq-edge",
-        style: { stroke: "#9ea1bbff" },
+        style: { stroke: "#bebfcc" },
       }))
     );
   }, []);

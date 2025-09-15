@@ -14,6 +14,12 @@
   font-style: normal;
 }
 
+.react-flow__handle {
+  visibility: hidden;
+  /* background-color: rgba(143, 83, 255, 0.986) !important; */
+  /* border: none !important; */
+}
+
 /* in index.css or App.css 
 button {
   all: unset; removes all inherited/global styles

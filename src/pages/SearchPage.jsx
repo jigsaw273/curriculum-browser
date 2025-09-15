@@ -31,6 +31,7 @@ export default function SearchPage() {
 
   return (
     <>
+      {/* bg-gray-50 */}
       <div className="flex justify-center gap-8 p-6">
         <div className="flex-1">
           <SearchBar setSearchInput={setSearchInput} />

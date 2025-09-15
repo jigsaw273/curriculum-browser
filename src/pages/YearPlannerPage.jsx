@@ -2,6 +2,7 @@ import { useState } from "react";
 import useCourseSearch from "../hooks/useCourseSearch";
 import SearchBar from "../features/search/SearchBar";
 import { DndContext, useDraggable, useDroppable } from "@dnd-kit/core";
+import "./Extended.css";
 
 export default function YearPlannerPage() {
   const { searchInput, setSearchInput, results } = useCourseSearch();
@@ -12,11 +13,13 @@ export default function YearPlannerPage() {
     plan: [],
     tri1: [],
     tri2: [],
+    tri3: [],
   });
 
   const columnNameMap = {
     tri1: "Trimester 1",
     tri2: "Trimester 2",
+    tri3: "Trimester 3",
   };
 
   function addCourse(course) {
@@ -43,69 +46,11 @@ export default function YearPlannerPage() {
       prev.filter((c) => !(c.courseId === course.courseId))
     );
 
-    // CORRECT: update columns object, not return an array
     setColumns((prev) => ({
       ...prev,
       plan: prev.plan.filter((c) => !(c.courseId === course.courseId)),
     }));
   }
-
-  return (
-    <>
-      <SearchBar setSearchInput={setSearchInput} />
-      <div className="flex gap-8 mt-4">
-        <div>
-          {results.map((course) => (
-            <div
-              className="p-4 bg-gray-200 m-4 hover:bg-gray-300"
-              key={course.courseId}
-              onClick={() => addCourse(course)}
-            >
-              <h1>
-                {course.courseId} - {course.courseName}
-              </h1>
-            </div>
-          ))}
-        </div>
-
-        <DndContext
-          onDragStart={({ active }) => {
-            const course = Object.values(columns)
-              .flat()
-              .find((c) => c.courseId === active.id);
-            setActiveCourse(course || null);
-          }}
-          onDragEnd={onDragEnd}
-          onDragCancel={() => setActiveCourse(null)}
-        >
-          <DroppableColumn
-            id="plan"
-            title="Plan to Take"
-            courses={columns.plan}
-            activeCourse={activeCourse}
-          />
-          <DroppableColumn
-            id="tri1"
-            title="Trimester 1"
-            courses={columns.tri1}
-            activeCourse={activeCourse}
-          />
-          <DroppableColumn
-            id="tri2"
-            title="Trimester 2"
-            courses={columns.tri2}
-            activeCourse={activeCourse}
-          />
-          <DroppableColumn
-            id="bin"
-            title="🗑 Drag here to remove"
-            courses={[]}
-            activeCourse={activeCourse}
-          />
-        </DndContext>
-      </div>
-    </>
-  );
 
   function DraggableCourse({ course }) {
     const { attributes, listeners, setNodeRef, transform } = useDraggable({
@@ -121,16 +66,17 @@ export default function YearPlannerPage() {
 
     return (
       <div
-        onClick={() => removeCourse(course)}
-        className="h-8 bg-violet-100 p-2 m-4"
+        className="bg-light-green rounded-md p-4 shadow-sm cursor-pointer hover:shadow-md"
         ref={setNodeRef}
         {...listeners}
         {...attributes}
         style={style}
       >
+        {/* <div className="h-10 bg-light-green "> */}
         <p>
           {course.courseId} - {course.courseName}
         </p>
+        {/* </div> */}
       </div>
     );
   }
@@ -139,13 +85,15 @@ export default function YearPlannerPage() {
     const { setNodeRef, isOver } = useDroppable({ id });
 
     let isValidDrop = id === "plan" || id === "bin";
-    if ((id === "tri1" || id === "tri2") && activeCourse) {
+    if ((id === "tri1" || id === "tri2" || id === "tri3") && activeCourse) {
       isValidDrop = activeCourse.trimestersOffered.includes(columnNameMap[id]);
     }
     return (
       <div
         ref={setNodeRef}
-        className={` ${isOver && isValidDrop ? "bg-green-200" : "bg-gray-100"}`}
+        className={`flex-1 min-w-[200px] p-4 rounded-lg border border-gray-300
+        ${isOver && isValidDrop ? "bg-green-200" : "bg-gray-100"}
+        flex flex-col gap-2`}
       >
         <h2 className="font-bold mb-2">{title}</h2>
         {courses.map((c) => (
@@ -203,4 +151,73 @@ export default function YearPlannerPage() {
       );
     }
   }
+
+  return (
+    <>
+      <div className="relative w-80">
+        <div className="special-search">
+          <SearchBar setSearchInput={setSearchInput} />
+        </div>
+        {searchInput && results.length > 0 && (
+          <div className="absolute top-full mt-2 w-full bg-white border border-gray-200 rounded-lg shadow-lg z-10 max-h-56 overflow-y-auto">
+            {results.map((course) => (
+              <div
+                key={course.courseId}
+                className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                onClick={() => {
+                  addCourse(course);
+                }}
+              >
+                {course.courseId} - {course.courseName}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+      {/* need to change the layout of this!!! */}
+      <div className="flex gap-8 mt-4">
+        <DndContext
+          onDragStart={({ active }) => {
+            const course = Object.values(columns)
+              .flat()
+              .find((c) => c.courseId === active.id);
+            setActiveCourse(course || null);
+          }}
+          onDragEnd={onDragEnd}
+          onDragCancel={() => setActiveCourse(null)}
+        >
+          <DroppableColumn
+            id="plan"
+            title="Plan to Take"
+            courses={columns.plan}
+            activeCourse={activeCourse}
+          />
+          <DroppableColumn
+            id="tri1"
+            title="Trimester 1"
+            courses={columns.tri1}
+            activeCourse={activeCourse}
+          />
+          <DroppableColumn
+            id="tri2"
+            title="Trimester 2"
+            courses={columns.tri2}
+            activeCourse={activeCourse}
+          />
+          <DroppableColumn
+            id="tri3"
+            title="Trimester 3"
+            courses={columns.tri3}
+            activeCourse={activeCourse}
+          />
+          <DroppableColumn
+            id="bin"
+            title="🗑 Drag here to remove"
+            courses={[]}
+            activeCourse={activeCourse}
+          />
+        </DndContext>
+      </div>
+    </>
+  );
 }

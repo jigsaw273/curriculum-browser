@@ -12,17 +12,27 @@ const useTimetableStore = create(
             c.courseName === newCourse.courseName &&
             c.trimester === newCourse.trimester
         );
-        console.log(exists);
+
         if (exists) return; // skip adding duplicate
 
         set({ courses: [...courses, newCourse] });
       },
-      removeCourse: (id) =>
+      removeCourse: (id) => {
         set((state) => ({
-          courses: state.courses.filter((c) => c.id !== id),
-        })),
+          courses: state.courses.filter((c) => c.courseName !== id),
+        }));
+      },
+      removeManyCourses: (coursesToRemove) => {
+        set((state) => ({
+          courses: state.courses.filter(
+            (c) =>
+              !coursesToRemove.some(
+                (course) => course.courseName === c.courseName
+              )
+          ),
+        }));
+      },
       removeAllCourses: () => set({ courses: [] }),
-
       updateCourses: (newCourses) => set({ courses: newCourses }),
     }),
     {

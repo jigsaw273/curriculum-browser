@@ -1,0 +1,72 @@
+.rbc-header{
+    background-color: rgb(255, 255, 255);
+    padding: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+    
+.rbc-time-header-cell .rbc-today {
+    background-color: #c2dbbd;
+}
+
+.rbc-today {
+    background-color: #eafbff;
+} 
+
+.rbc-day-slot .rbc-events-container {
+    margin-right:2px;
+}
+
+.rbc-allday-cell{
+    display: none;
+}
+
+.rbc-event-label {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+/*
+.rbc-time-header-content {
+    background-color: blue;
+}
+
+.rbc-time-view {
+    background-color: white;
+    border-radius: 16px;
+    border: none;
+}
+
+.rbc-event {
+     box-shadow: 1px 1px 2px rgb(146, 146, 146, 0.3);
+}
+
+.rbc-time-slot {
+    z-index: 1
+} */
+
+/* .rbc-time-gutter {
+    padding: 16px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rbc-time-gutter .rbc-time-slot{
+    background-color: rgb(122, 53, 53);
+    /* padding-top:16px; */
+
+/* .rbc-time-gutter .rbc-time-slot span{
+    background-color: pink;
+    
+  */
+
+.rbc-current-time-indicator {
+    position: absolute;
+    z-index: 3;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #74ad31;
+    pointer-events: none;
+}

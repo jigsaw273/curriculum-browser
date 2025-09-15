@@ -1,11 +1,17 @@
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-
+import "./Timetable.css";
 const localizer = momentLocalizer(moment);
 
-const COLORS = ["#1E90FF", "#32CD32", "#FFD700", "#FF69B4", "#8A2BE2"];
-
+const COLORS = [
+  "#A997DF",
+  "#4a90a0",
+  "#9cbf88",
+  "#e39fa6",
+  "#5f3b8b",
+  "#d288d2",
+];
 export default function Timetable({ offering }) {
   // Ensure we always have an array
   const offeringsArray = Array.isArray(offering) ? offering : [offering];
@@ -48,8 +54,8 @@ export default function Timetable({ offering }) {
         events={events}
         defaultView="work_week"
         views={["work_week"]}
-        min={new Date(0, 0, 0, 8, 0)} // 8 AM
-        max={new Date(0, 0, 0, 19, 0)} // 7 PM
+        min={new Date(0, 0, 0, 9, 0)} // 9 AM
+        max={new Date(0, 0, 0, 18, 0)} // 6 PM
         toolbar={false} // hide navigation
         eventPropGetter={eventStyleGetter} // apply color
         // style={{ height: 1600 }} // 12 hours * 200px = 2400px
