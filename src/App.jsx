@@ -28,11 +28,10 @@ function App() {
 
   const navLinks = [
     { to: "/search", label: "Course Search", icon: FaSearch },
-    { to: "/tree", label: "Dependencies", icon: FaProjectDiagram },
-    { to: "/degree", label: "Forward Planner", icon: FaCalendarDay },
-    { to: "/requisites", label: "My Timetable", icon: FaList },
-    { to: "/yearplanner", label: "Year Planner", icon: FaLayerGroup },
-    { to: "/fplanner", label: "Extended", icon: FaArrowRight },
+    { to: "/timetable", label: "My Timetable", icon: FaList },
+    { to: "/year-planner", label: "Year Planner", icon: FaLayerGroup },
+    { to: "/forward-planner", label: "Forward Planner", icon: FaArrowRight },
+    { to: "/dependency-tree", label: "Dependencies", icon: FaCalendarDay },
   ];
 
   return (
@@ -77,10 +76,10 @@ function App() {
             <Routes>
               <Route path="/search" element={<SearchPage />} />
               <Route path="/tree" element={<ForwardPlannerCard />} />
-              <Route path="/degree" element={<ForwardPlanner />} />
-              <Route path="/requisites" element={<MyTimetablePage />} />
-              <Route path="/yearplanner" element={<YearPlannerPage />} />
-              <Route path="/fplanner" element={<ExtendedCourseFlow />} />
+              <Route path="/dependency-tree" element={<ForwardPlanner />} />
+              <Route path="/timetable" element={<MyTimetablePage />} />
+              <Route path="/year-planner" element={<YearPlannerPage />} />
+              <Route path="/forward-planner" element={<ExtendedCourseFlow />} />
               <Route path="/" element={<Navigate to="/search" replace />} />
               <Route
                 path="/course/:courseCode/:courseNum"
