@@ -39,12 +39,6 @@ export default function useCourseSearch(
       );
     }
 
-    // if (filters.trimester.length > 0) {
-    //   filtered = filtered.filter((course) =>
-    //     filters.trimester.includes(course.trimesterOffered)
-    //   );
-    // }
-
     if (filters.trimester.length > 0) {
       filtered = filtered.filter((course) => {
         const offered = course.trimestersOffered.flatMap((t) =>

@@ -48,14 +48,14 @@ export default function Timetable({ offering }) {
   };
 
   return (
-    <div style={{ height: 800, overflowY: "auto" }}>
+    <div style={{ height: 750, overflowY: "auto" }}>
       <Calendar
         localizer={localizer}
         events={events}
         defaultView="work_week"
         views={["work_week"]}
         min={new Date(0, 0, 0, 9, 0)} // 9 AM
-        max={new Date(0, 0, 0, 18, 0)} // 6 PM
+        max={new Date(0, 0, 0, 17, 0)} // 6 PM
         toolbar={false} // hide navigation
         eventPropGetter={eventStyleGetter} // apply color
         // style={{ height: 1600 }} // 12 hours * 200px = 2400px

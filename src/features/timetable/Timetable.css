@@ -26,6 +26,19 @@
     padding-top: 4px;
     padding-bottom: 4px;
 }
+
+.rbc-calender {
+    border-radius: 16px;
+    border: none;
+}
+
+.rbc-time-view {
+    border-radius: 8px;
+}
+
+/* .rbc-time-content {
+    background-color: rgb(240, 240, 240);
+} */
 /*
 .rbc-time-header-content {
     background-color: blue;

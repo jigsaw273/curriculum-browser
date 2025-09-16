@@ -37,9 +37,9 @@ export default function MyTimetablePage() {
   };
 
   return (
-    <div className="bg-white px-10 py-8">
+    <div className="bg-white px-10 py-12 rounded-xl">
       <div className="flex">
-        <div className="min-w-[80%]">
+        <div className="min-w-[80%] pl-8 pr-4">
           <div className="flex justify-between items-center mb-6">
             <div className="">
               <h1 className="text-2xl font-bold text-gray-800">

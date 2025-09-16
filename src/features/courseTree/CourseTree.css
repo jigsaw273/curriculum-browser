@@ -1,10 +1,9 @@
-/* Variable replacements */
 :root {
   --connector-size: 0.75rem;
   --btn-border-radius: 0.25rem;
 }
 
-.container {
+.course-tree-container {
   width: 40em;
   display: flex;
   align-items: center;
@@ -15,7 +14,7 @@
 }
 
 .tree,
-.prereq-tree {
+.subsection-container {
   position: relative;
   list-style: none;
   padding: 0;
@@ -29,8 +28,8 @@
   flex: 0 1 4rem;
   justify-content: center;
   align-items: center;
-  padding: 0.2rem 0.3rem;
-  margin: 0 0 1px var(--connector-size);
+  padding: 0.3rem 0.4rem;
+  margin: 0 0 2px var(--connector-size);
   border-radius: var(--btn-border-radius);
   white-space: nowrap;
 }
@@ -119,7 +118,7 @@
   margin: 0 var(--connector-size) 1px 0;
   border-color: 8C7BC9#6f53d4;
   color: #291b5a;
-  background-color: #aa9be2;
+  background-color: #beaff5;
   flex: 0 1 6em;
 }
 
@@ -134,7 +133,7 @@
 .course-node {
   border-color: #e77cae;
   color: #412246;
-  background-color: #e7a4e7;
+  background-color: #ddb5dd;
   margin-left: 0;
 }
 
@@ -144,6 +143,6 @@
 
 .prereq-node {
   border-color: #38bdbd;
-  color: #193535;
-  background-color: #80c0c0;
+  color: #102525;
+  background-color: #8dc7c7;
 }

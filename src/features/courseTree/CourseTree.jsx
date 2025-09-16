@@ -1,6 +1,7 @@
 import React from "react";
 import "./CourseTree.css";
-// Recursively builds the tree structure, inspiration from NUSMODs
+
+// Recursively builds the tree structure, inspired from from NUSMODs
 const Tree = ({ prereq }) => {
   if (!prereq) {
     return <div className="node prereq-node">No prereqs</div>;
@@ -14,14 +15,14 @@ const Tree = ({ prereq }) => {
     const multiple = prereq.clauses.length > 1;
 
     return (
-      <ul className="prereq-tree">
+      <ul className="subsection-container">
         <li className="branch">
           {multiple && (
             <div className="node conditional">
               {prereq.type == "AND" ? "all of" : "one of"}
             </div>
           )}
-          <ul className="prereq-tree">
+          <ul className="subsection-container">
             {prereq.clauses.map((clause, i) => (
               <li key={i} className="branch">
                 <Tree prereq={clause} />
@@ -37,10 +38,10 @@ const Tree = ({ prereq }) => {
 
 export default function CourseTree({ course, prereqData, postreqData }) {
   return (
-    <div className="container">
-      {prereqData && postreqData.length > 0 ? (
+    <div className="course-tree-container">
+      {postreqData && postreqData.length > 0 ? (
         <>
-          <ul className="prereq-tree">
+          <ul className="subsection-container">
             {postreqData.map((course, i) => (
               <li key={i} className="branch prereq-branch">
                 <div className="node postreq-node">{course}</div>
@@ -50,11 +51,14 @@ export default function CourseTree({ course, prereqData, postreqData }) {
           <div className="node conditional">needs</div>
         </>
       ) : (
-        <ul className="prereq-tree">
-          <li className="branch prereq-branch">
-            <div className="node postreq-node">No postreqs</div>
-          </li>
-        </ul>
+        <>
+          <ul className="subsection-container">
+            <li className="branch prereq-branch">
+              <div className="node postreq-node">No postreqs</div>
+            </li>
+          </ul>
+          <div className="node conditional">needs</div>
+        </>
       )}
 
       <ul className="tree root">

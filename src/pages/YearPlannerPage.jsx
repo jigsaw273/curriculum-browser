@@ -211,10 +211,12 @@ export default function YearPlannerPage() {
         onDragEnd={onDragEnd}
         onDragCancel={() => setActiveCourse(null)}
       >
-        <div className=" bg-white px-10 py-8">
+        <div className=" bg-white px-10 py-8 rounded-xl">
           <div className="flex justify-between items-center mb-6">
             <div>
-              <h1 className="text-2xl font-bold text-gray-800">Year Planner</h1>
+              <h1 className="text-2xl font-bold text-gray-800 mb-1">
+                Year Planner
+              </h1>
               <p className="text-gray-600 text-sm">
                 Search, drag and drop courses into trimesters.
               </p>

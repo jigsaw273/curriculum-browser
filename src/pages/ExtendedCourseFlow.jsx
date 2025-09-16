@@ -146,9 +146,9 @@ export default function ExtendedCourseFlow() {
   return (
     <div className="flex h-full gap-4 p-6 bg-gray-50">
       {/* Left panel */}
-      <div className="w-80 bg-white shadow-md rounded-2xl p-6 flex flex-col">
-        <h2 className="text-lg font-semibold mb-2">Course Planner</h2>
-        <p className="text-sm text-gray-500 mb-4">
+      <div className="w-1/4 bg-white shadow-md rounded-2xl p-7 flex flex-col">
+        <h2 className="text-xl font-semibold mb-2">Course Planner</h2>
+        <p className="text-m text-gray-500 mb-4">
           Search for courses you’ve already taken, then calculate your unlocks.
         </p>
 
@@ -178,15 +178,15 @@ export default function ExtendedCourseFlow() {
         {/* Taken courses */}
         {takenCourses.length > 0 && (
           <>
-            <h3 className="text-sm font-medium mb-2 text-gray-700">
-              Taken Courses
+            <h3 className="text-l italic font-medium my-3 text-gray-700">
+              Courses You've Taken
             </h3>
-            <div className="flex flex-wrap gap-2 mb-4">
+            <div className="flex flex-wrap gap-1 mb-4">
               {takenCourses.map((course) => (
                 <button
                   key={course.courseId}
                   onClick={() => removeCourse(course)}
-                  className="px-3 py-2 text-sm bg-blue-100 text-blue-700 hover:bg-blue-200 rounded-full"
+                  className="px-3 py-2 text-sm bg-blue-100 text-purple-700 hover:bg-blue-200 !rounded-full"
                 >
                   {course.courseId} ✕
                 </button>
@@ -218,9 +218,9 @@ export default function ExtendedCourseFlow() {
       </div>
 
       {/* Graph panel */}
-      <div className="flex-1 bg-white rounded-2xl shadow-md p-4 flex flex-col">
-        <h2 className="text-lg font-semibold mb-2">Unlock Graph</h2>
-        <p className="text-sm text-gray-500 mb-4">
+      <div className="flex-1 bg-white rounded-2xl shadow-md p-7 flex flex-col">
+        <h2 className="text-xl font-semibold mb-2">Unlock Graph</h2>
+        <p className="text-m text-gray-500 mb-4">
           Visualize which courses you’ve unlocked or partially unlocked.
         </p>
         <div className="flex-1 h-[70vh]">

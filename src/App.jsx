@@ -62,7 +62,7 @@ function App() {
             ))}
             <button
               onClick={() => setCollapsed(!collapsed)}
-              // className="!bg-light-green !border-0"
+              className="!bg-[#9AC77A] !border-0"
             >
               {collapsed ? ">" : "<"}
             </button>
