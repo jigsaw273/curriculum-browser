@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist --dotfiles -b gh-pages"
+    "deploy": "gh-pages -d dist --dotfiles -b gh-pages --no-verify"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
