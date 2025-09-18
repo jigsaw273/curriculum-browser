@@ -42,16 +42,36 @@ export default function MyTimetablePage() {
         <div className="min-w-[80%] pl-8 pr-4">
           <div className="flex justify-between items-center mb-6">
             <div className="">
-              <h1 className="text-2xl font-bold text-gray-800">
-                Your Timetable
+              <h1 className="text-2xl font-semibold text-gray-800 mb-1">
+                My Timetable
               </h1>
-              <p className="text-gray-600 text-sm">
+              <p className="text-gray-600 text-base">
                 Build, view and export your course timetable
               </p>
             </div>
             <div className="">
-              <button onClick={() => setActiveTab("t1")}>Trimester 1</button>
-              <button onClick={() => setActiveTab("t2")}>Trimester 2</button>
+              {/* <button onClick={() => setActiveTab("t1")}>Trimester 1</button>
+              <button onClick={() => setActiveTab("t2")}>Trimester 2</button> */}
+              <button
+                onClick={() => setActiveTab("t1")}
+                className={`${
+                  activeTab === "t1"
+                    ? "!bg-[#f6f3ff] text-accent-purple !border-accent-purple !border-2"
+                    : "bg-gray-200 text-gray-600 border-gray-300 hover:bg-gray-300 !border-2"
+                }`}
+              >
+                Trimester 1
+              </button>
+              <button
+                onClick={() => setActiveTab("t2")}
+                className={`${
+                  activeTab === "t2"
+                    ? "!bg-[#f6f3ff] text-accent-purple !border-accent-purple !border-2"
+                    : "bg-gray-200 text-gray-600 border-gray-300 hover:bg-gray-300 !border-2"
+                }`}
+              >
+                Trimester 2
+              </button>
             </div>
           </div>
           <div ref={timetableRef}>
@@ -61,11 +81,13 @@ export default function MyTimetablePage() {
         <div className="flex flex-col gap-2 pl-8 w-full">
           <button
             onClick={() => removeManyCourses(activeCourses)}
-            className="px-4 py-2"
+            className="px-4 py-2 !bg-error-red text-white"
           >
             Clear All
           </button>
-          <button onClick={exportPNG}>Export as PNG</button>
+          <button className="!border-2 !border-gray-400" onClick={exportPNG}>
+            Export as PNG
+          </button>
           <div className="mt-4">
             <h2 className="text-lg font-semibold mb-3 ml-2 items-center text-center">
               Selected Courses

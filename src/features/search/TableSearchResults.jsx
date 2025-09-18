@@ -30,7 +30,20 @@ export default function TableSearchResults({ results }) {
                 {item.offerings.find((o) => o.courseCoordinator)
                   ?.courseCoordinator || ""}
               </td>
-              <td>{item.trimestersOffered}</td>
+              <td>
+                {Array.isArray(item.trimestersOffered)
+                  ? [
+                      ...new Set(
+                        item.trimestersOffered.flatMap((t) =>
+                          t
+                            .split(/[\|,]/) // split on | or ,
+                            .map((s) => s.trim())
+                            .filter(Boolean)
+                        )
+                      ),
+                    ].join(", ")
+                  : item.trimestersOffered}
+              </td>
             </tr>
           ))}
         </tbody>

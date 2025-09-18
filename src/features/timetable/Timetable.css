@@ -7,11 +7,11 @@
 }
     
 .rbc-time-header-cell .rbc-today {
-    background-color: #c2dbbd;
+    background-color: #d5f1ea;
 }
 
 .rbc-today {
-    background-color: #eafbff;
+    background-color: #edf7f1;
 } 
 
 .rbc-day-slot .rbc-events-container {
@@ -34,6 +34,11 @@
 
 .rbc-time-view {
     border-radius: 8px;
+}
+
+.rbc-button-link {
+    font-weight: 400;
+    font-size: 18px
 }
 
 /* .rbc-time-content {

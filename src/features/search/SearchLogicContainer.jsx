@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Filters from "./Filters.jsx";
 import SearchBar from "./SearchBar.jsx";
 import useCourseSearch from "../../hooks/useCourseSearch.js";
+
 // import "./SearchContainer.css";
 
 export default function SearchLogicContainer({ setResults }) {
@@ -20,6 +21,7 @@ export default function SearchLogicContainer({ setResults }) {
         <Filters onFilterChange={setFilters} />
       </div>
       <TableSearchResults results={results} />
+      <CardSearchResults results={results} />
     </>
   );
 }

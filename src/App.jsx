@@ -7,12 +7,13 @@ import {
   Navigate,
 } from "react-router-dom";
 import {
-  FaSearch,
   FaProjectDiagram,
   FaCalendarDay,
-  FaList,
-  FaLayerGroup,
   FaArrowRight,
+  FaColumns,
+  FaGraduationCap,
+  FaCaretLeft,
+  FaCaretRight,
 } from "react-icons/fa";
 import "./App.css";
 import ForwardPlanner from "./features/fowardplanner/ForwardPlanner";
@@ -22,47 +23,50 @@ import YearPlannerPage from "./pages/YearPlannerPage";
 import MyTimetablePage from "./pages/MyTimetablePage";
 import SearchPage from "./pages/SearchPage";
 import ExtendedCourseFlow from "./pages/ExtendedCourseFlow";
+import CurriculumGraph from "./pages/CurriculumGraph";
 
 function App() {
   const [collapsed, setCollapsed] = useState(false);
 
   const navLinks = [
-    { to: "/search", label: "Course Search", icon: FaSearch },
-    { to: "/timetable", label: "My Timetable", icon: FaList },
-    { to: "/year-planner", label: "Year Planner", icon: FaLayerGroup },
+    { to: "/search", label: "Course Search", icon: FaGraduationCap },
+    { to: "/timetable", label: "My Timetable", icon: FaCalendarDay },
+    { to: "/year-planner", label: "Year Planner", icon: FaColumns },
     { to: "/forward-planner", label: "Forward Planner", icon: FaArrowRight },
-    { to: "/dependency-tree", label: "Dependencies", icon: FaCalendarDay },
+    { to: "/dependency-tree", label: "Dependencies", icon: FaProjectDiagram },
   ];
 
   return (
     <Router>
       <div className="min-h-screen flex flex-col bg-off-white">
-        <header className="bg-[#4f5a55] text-white py-2 px-4">VUWCourse</header>
+        <header className="bg-[#314638] text-white py-2 px-4">VUWPlanIt</header>
 
         <div className="flex flex-1 relative">
           <nav
-            className={`bg-light-green p-4 flex flex-col gap-4 absolute h-full pt-16 transition-all duration-300 
+            className={`bg-light-green p-4  flex flex-col gap-4 absolute h-full pt-16 transition-all duration-300 
               ${collapsed ? "w-20" : "w-64"}`}
           >
-            {navLinks.map(({ to, label, icon: Icon }) => (
-              <Link
-                key={to}
-                to={to}
-                className="flex items-center gap-4 text-dark-green px-4 py-2 rounded hover:bg-[#90bb7c]"
-              >
-                <Icon className="w-5 h-5 shrink-0" />
-                <span
-                  className={`whitespace-nowrap transition-all duration-300 overflow-hidden ${
-                    collapsed ? "opacity-0 w-0" : "opacity-100 w-auto"
-                  }`}
+            <div className="flex flex-col gap-4">
+              {navLinks.map(({ to, label, icon: Icon }) => (
+                <Link
+                  key={to}
+                  to={to}
+                  className="flex items-center gap-4 text-[#125343] px-4 py-2 rounded hover:bg-[#78b97c] transition-all duration-100"
                 >
-                  {label}
-                </span>
-              </Link>
-            ))}
+                  <Icon className="w-5 h-5 shrink-0" />
+                  <span
+                    className={`whitespace-nowrap transition-all duration-300 overflow-hidden ${
+                      collapsed ? "opacity-0 w-0" : "opacity-100 w-auto"
+                    }`}
+                  >
+                    {label}
+                  </span>
+                </Link>
+              ))}
+            </div>
             <button
               onClick={() => setCollapsed(!collapsed)}
-              className="!bg-[#9AC77A] !border-0"
+              className="!bg-[#78b97c] !border-0"
             >
               {collapsed ? ">" : "<"}
             </button>

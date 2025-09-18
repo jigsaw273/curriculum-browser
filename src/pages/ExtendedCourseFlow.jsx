@@ -97,12 +97,13 @@ export default function ExtendedCourseFlow() {
         let color = "black";
 
         if (selectedCourses.includes(course.id)) {
-          backgroundColor = "#3e3cafff"; // taken
+          backgroundColor = "#0A2342"; // taken
           color = "white";
         } else if (unlockedCourses.includes(course.id)) {
-          backgroundColor = "#1fa660ff"; // true unlock
+          backgroundColor = "#2D8B73"; // true unlock
+          color = "white";
         } else if (possibleUnlocks.includes(course.id)) {
-          backgroundColor = "#c2c2c7ff"; // partial unlock
+          backgroundColor = "#DEDDDC"; // partial unlock
         }
 
         return {
@@ -148,7 +149,7 @@ export default function ExtendedCourseFlow() {
       {/* Left panel */}
       <div className="w-1/4 bg-white shadow-md rounded-2xl p-7 flex flex-col">
         <h2 className="text-xl font-semibold mb-2">Course Planner</h2>
-        <p className="text-m text-gray-500 mb-4">
+        <p className="text-m text-gray-500 mb-6">
           Search for courses you’ve already taken, then calculate your unlocks.
         </p>
 
@@ -196,15 +197,15 @@ export default function ExtendedCourseFlow() {
         )}
 
         {/* Actions */}
-        <div className="flex gap-2 mt-auto">
+        <div className="flex flex-wrap gap-2 mt-auto">
           <button
-            className="flex-1 py-2 bg-blue-500 text-black rounded-lg hover:bg-blue-600 transition"
+            className="flex-1 py-2 text-black !border-2"
             onClick={buildGraph}
           >
             Calculate
           </button>
           <button
-            className="flex-1 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition"
+            className="flex-1 py-2 !border-2 !bg-error-red text-white"
             onClick={() => {
               setTakenCourses([]);
               setNodes([]);

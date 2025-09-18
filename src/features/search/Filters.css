@@ -1,4 +1,4 @@
-.filter-container {
+/* .filter-container {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -16,7 +16,7 @@
 
 .filter-title {
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 400;
   color: #444;
   margin-bottom: 0.25rem;
   border-bottom: 1px solid #eee;
@@ -30,11 +30,12 @@
   font-size: 0.9rem;
   color: #333;
   cursor: pointer;
+  font-weight: 300;
 }
 
 .filter-checkbox input {
-  accent-color: #4caf50; /* modern green */
+  accent-color: #4caf50; 
   width: 16px;
   height: 16px;
   cursor: pointer;
-}
+} */

@@ -12,6 +12,8 @@ export default function CourseInfoPage() {
   const courseName = courseCode + courseNum;
   const course = courseDetails[courseName];
   const addCourse = useTimetableStore((state) => state.addCourse);
+  const removeCourse = useTimetableStore((state) => state.removeCourse);
+  const [courseAdded, setCourseAdded] = useState(false);
 
   const validOfferings = course.offerings.filter(
     (off) => off.lectureDays.length > 0
@@ -23,12 +25,27 @@ export default function CourseInfoPage() {
     (off) => off.examPeriodEnd === activeTab
   );
 
+  const handleButtonToggle = () => {
+    if (!courseAdded) {
+      addCourse({
+        ...activeOffering,
+        courseName: courseName,
+        courseTitle: course.courseName,
+      });
+    } else {
+      removeCourse(courseName);
+    }
+    setCourseAdded(!courseAdded);
+  };
+
   return (
     <div className="bg-gray-50 pt-10">
-      <div className="max-w-5xl mx-auto p-8 space-y-8 font-sans bg-gray- ">
+      <div className="max-w-5xl mx-auto p-8 space-y-8 bg-gray- ">
         {/* Header */}
         <div className="space-y-1">
-          <h1 className="text-3xl font-bold">{courseName}</h1>
+          <h1 className="text-3xl font-semibold text-accent-purple">
+            {courseName}
+          </h1>
           <h2 className="text-2xl font-semibold text-gray-700">
             {course.courseName}
           </h2>
@@ -36,15 +53,17 @@ export default function CourseInfoPage() {
 
         {/* Course Description */}
         <section className="space-y-2">
-          <h3 className="text-xl font-semibold">Course Description</h3>
-          <p className="text-gray-700 leading-relaxed">
+          <h3 className="text-xl font-medium text-gray-700">
+            Course Description
+          </h3>
+          <p className="text-gray-700 leading-relaxed text-lg font-sans">
             {course.courseDescription}
           </p>
         </section>
 
         {/* Prerequisites */}
         <section className="space-y-2">
-          <h3 className="text-xl font-semibold">Prerequisites</h3>
+          <h3 className="text-xl font-medium text-gray-700">Prerequisites</h3>
           <div className="bg-gray-100 p-4 rounded-md">
             <CourseTree
               course={courseName}
@@ -56,7 +75,7 @@ export default function CourseInfoPage() {
 
         {/* Offerings */}
         <section className="space-y-4">
-          <h3 className="text-xl font-semibold">Offerings</h3>
+          <h3 className="text-xl font-medium text-gray-700">Offerings</h3>
           {validOfferings.length === 0 ? (
             <p className="text-gray-500">No timetable data for this course.</p>
           ) : (
@@ -71,7 +90,7 @@ export default function CourseInfoPage() {
                         onClick={() => setActiveTab(off.examPeriodEnd)}
                         className={`px-4 py-2 -mb-px border-b-2 transition-colors font-medium ${
                           activeTab === off.examPeriodEnd
-                            ? "border-purple-600 text-purple-700"
+                            ? "border-accent-purple text-accent-purple"
                             : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
                         }`}
                       >
@@ -84,13 +103,13 @@ export default function CourseInfoPage() {
               {/* Tab Content */}
               {activeOffering && (
                 <div className="bg-white border border-gray-100 rounded-b-md p-4 space-y-2">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p>
+                  <div className="flex items-baseline-last justify-between">
+                    <div className="font-light text-gray-700 ml-4 mt-4">
+                      <p className="mb-1">
                         <span className="font-semibold">Coordinator:</span>{" "}
                         {activeOffering.courseCoordinator}
                       </p>
-                      <p>
+                      <p className="mb-1">
                         <span className="font-semibold">Lecture Days:</span>{" "}
                         {activeOffering.lectureDays.join(", ")}
                       </p>
@@ -100,16 +119,12 @@ export default function CourseInfoPage() {
                       </p>
                     </div>
                     <button
-                      onClick={() =>
-                        addCourse({
-                          ...activeOffering,
-                          courseName: courseName,
-                          courseTitle: course.courseName,
-                        })
-                      }
-                      className="px-6 py-2 bg-white text-dark-purple !border-2 !border-dark-purple font-medium !hover:bg-[#ff] transition"
+                      onClick={handleButtonToggle}
+                      className="px-6 py-2 !mr-4 bg-accent-purple text-accent-purple !border-2 !border-accent-purple font-medium !hover:bg-[#ff] transition"
                     >
-                      Add to My Timetable
+                      {courseAdded
+                        ? `Remove from ${activeOffering.trimester}`
+                        : `Add to  ${activeOffering.trimester}`}
                     </button>
                   </div>
 

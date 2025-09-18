@@ -1,4 +1,45 @@
 export const courseDependencies = {
+  AIML427: {
+    prerequisites: {
+      type: "AND",
+      clauses: [
+        {
+          type: "OR",
+          clauses: [
+            { type: "COURSE", course: "AIML231" },
+            { type: "COURSE", course: "AIML232" },
+            { type: "COURSE", course: "AIML320" },
+            { type: "COURSE", course: "AIML331-335" },
+            { type: "COURSE", course: "AIML420" },
+            { type: "COURSE", course: "AIML421" },
+            { type: "COURSE", course: "COMP307" },
+            { type: "COURSE", course: "COMP309" },
+            { type: "COURSE", course: "DATA301" },
+            { type: "COURSE", course: "DATA303" },
+            { type: "COURSE", course: "DATA305" },
+            { type: "COURSE", course: "DATA471" },
+            { type: "COURSE", course: "DATA473" },
+            { type: "COURSE", course: "DATA475" },
+            { type: "COURSE", course: "STAT393" },
+            { type: "COURSE", course: "STAT394" },
+          ],
+        },
+        {
+          type: "OR",
+          clauses: [
+            { type: "COURSE", course: "ENGR123" },
+            { type: "COURSE", course: "MATH177" },
+            { type: "COURSE", course: "QUAN102" },
+            { type: "COURSE", course: "STAT193" },
+          ],
+        },
+      ],
+    },
+    corequisites: {
+      type: "AND",
+      clauses: [],
+    },
+  },
   COMP102: {
     prerequisites: {
       type: "AND",

@@ -1,23 +1,34 @@
 import { useNavigate } from "react-router-dom";
 
 export default function CardSearchResults({ results }) {
-  const navigate = useNavigate();
-
   const handleRowClick = (course) => {
-    navigate(`/course/${course.courseCode}/${course.courseNum}`);
+    window.open(`/course/${course.courseCode}/${course.courseNum}`, "_blank");
   };
 
   return (
-    <div className="search-results">
+    <div className="space-y-4">
       {results.map((item) => (
         <div
           key={item.faculty + item.code}
-          className="rounded-xl bg-off-white text-black white p-8 my-4"
+          className="p-6 bg-white rounded-lg border border-gray-200 hover:shadow-md transition cursor-pointer mt-4"
+          onClick={() => handleRowClick(item)}
         >
-          <h1 className="text-xl">{item.courseId}</h1>
-          <h1>{item.courseName}</h1>
-          <p>{item.courseCoordinator}</p>
-          <p>{item.trimesterOffered}</p>
+          <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
+            {/* Left side - details */}
+            <div className="flex-1 p-4">
+              <h1 className="text-lg font-base text-accent-purple hover:text-dark-purple transition">
+                {item.courseId} — {item.courseName}
+              </h1>
+              <p className="text-sm text-gray-600 mt-1">
+                <span className="font-medium">Coordinator:</span>{" "}
+                {item.offerings.find((o) => o.courseCoordinator)
+                  ?.courseCoordinator || "TBA"}
+              </p>
+              <p className="text-gray-500 mt-2 text-sm">
+                {item.courseDescription}
+              </p>
+            </div>
+          </div>
         </div>
       ))}
     </div>

@@ -105,14 +105,13 @@ export default function ForwardPlanner() {
         let color = "black";
 
         if (selectedCourses.includes(node.id)) {
-          backgroundColor = "#3e3cafff";
+          backgroundColor = "#0A2342"; // taken
           color = "white";
         } else if (unlockedCourses.includes(node.id)) {
-          backgroundColor = "#1fa660ff";
-          color = "black";
+          backgroundColor = "#2D8B73"; // true unlock
+          color = "white";
         } else if (possibleUnlocks.includes(node.id)) {
-          backgroundColor = "#c2c2c7ff";
-          color = "black";
+          backgroundColor = "#DEDDDC"; // partial unlock
         }
 
         return {
@@ -204,14 +203,48 @@ export default function ForwardPlanner() {
         fitView
         fitViewOptions={{ padding: 0.2 }}
       >
+        <Panel position="top-left">
+          <h2>Click on a node to select it...</h2>
+          <div className="p-3 mt-4 bg-white/90 rounded text-sm space-y-2 w-fit ">
+            <div className="flex items-center gap-2">
+              <span
+                className="w-4 h-4 rounded"
+                style={{ backgroundColor: "#0A2342" }}
+              ></span>
+              <span className="text-gray-800">Taken</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span
+                className="w-4 h-4 rounded"
+                style={{ backgroundColor: "#2D8B73" }}
+              ></span>
+              <span className="text-gray-800 ">Unlocked</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span
+                className="w-4 h-4 rounded"
+                style={{ backgroundColor: "#DEDDDC" }}
+              ></span>
+              <span className="text-gray-800">Possible</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span
+                className="w-4 h-4 rounded border border-[#bebfcc]"
+                style={{ backgroundColor: "#fff" }}
+              ></span>
+              <span className="text-gray-800">Unselected</span>
+            </div>
+          </div>
+        </Panel>
         <Panel position="top-right">
           <button className="panel-button" onClick={() => onLayout("TB")}>
-            vertical layout
+            Vertical layout
           </button>
           <button className="panel-button" onClick={() => onLayout("LR")}>
-            horizontal layout
+            Horizontal layout
           </button>
         </Panel>
+
         <Background />
         <Controls />
       </ReactFlow>

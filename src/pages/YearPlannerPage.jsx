@@ -3,6 +3,7 @@ import useCourseSearch from "../hooks/useCourseSearch";
 import SearchBar from "../features/search/SearchBar";
 import { DndContext, useDraggable, useDroppable } from "@dnd-kit/core";
 import useTimetableStore from "../hooks/useTimetableStore";
+import toast, { Toaster } from "react-hot-toast";
 import "./Extended.css";
 
 export default function YearPlannerPage() {
@@ -12,6 +13,8 @@ export default function YearPlannerPage() {
   const [showTri3, setShowTri3] = useState(false);
   const addCourse = useTimetableStore((state) => state.addCourse);
   const removeAllCourses = useTimetableStore((state) => state.removeAllCourses);
+
+  const notify = () => toast.success("All courses added to your Timetable!");
 
   const [columns, setColumns] = useState({
     plan: [],
@@ -42,6 +45,7 @@ export default function YearPlannerPage() {
   }
 
   function updateTimetable() {
+    notify();
     columns.tri1.forEach((course) => {
       const activeTri = course.offerings.find(
         (off) =>
@@ -201,6 +205,7 @@ export default function YearPlannerPage() {
 
   return (
     <>
+      <Toaster position="top-right" reverseOrder={false} />
       <DndContext
         onDragStart={({ active }) => {
           const course = Object.values(columns)
@@ -214,23 +219,20 @@ export default function YearPlannerPage() {
         <div className=" bg-white px-10 py-8 rounded-xl">
           <div className="flex justify-between items-center mb-6">
             <div>
-              <h1 className="text-2xl font-bold text-gray-800 mb-1">
+              <h1 className="text-2xl font-semibold text-gray-800 mb-1">
                 Year Planner
               </h1>
-              <p className="text-gray-600 text-sm">
+              <p className="text-gray-600 text-base">
                 Search, drag and drop courses into trimesters.
               </p>
             </div>
             <div className="flex gap-3">
-              <button
-                onClick={() => updateTimetable()}
-                className="px-4 py-2 bg-blue-600 text-black text-sm rounded-lg shadow hover:bg-blue-700 active:scale-95 active:bg-blue-800 transition transform"
-              >
+              <button onClick={() => updateTimetable()} className="px-4 py-2">
                 Add to Timetable
               </button>
               <button
                 onClick={() => setShowTri3((prev) => !prev)}
-                className="px-4 py-2 bg-blue-600 text-black text-sm rounded-lg shadow hover:bg-blue-700 active:scale-95 active:bg-blue-800 transition transform"
+                className="px-4 py-2"
               >
                 {showTri3 ? "Remove Tri 3" : "Add Tri 3"}
               </button>
