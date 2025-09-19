@@ -10,12 +10,16 @@ Since this is a project with limited time and resources, the design choices lean
 
 - **React** – UI library
 - **React Router Dom** – client-side navigation
-- **TailwindCSS + @tailwindcss/vite + shadcn/ui** – styling and components
+- **TailwindCSS** – styling and components
 - **ReactFlow** – visualizing prerequisite and unlock graphs
 - **Dnd Kit** – drag-and-drop interactions in the planner
 - **React Big Calendar** – timetable visualization
 - **Zustand** – state management
 - **React Hot Toast & React Icons** – notifications and icons
+
+### Backend
+
+- **Node.js** – Server runtime
 
 ### Dev Tools
 
@@ -25,26 +29,38 @@ Since this is a project with limited time and resources, the design choices lean
 
 ## Project Structure
 
+```text
 src/
-├── assets/ # Static assets like images, icons, etc.
-├── data/ # JSON course data used by the app
-├── features/ # Core features
-│ ├── courseTree/ # Course prerequisite/unlock graphs
-│ ├── forwardplanner/ # Planner showing future course unlocks
-│ ├── futureFeatures/ # Experimental features
-│ ├── search/ # Course search functionality
-│ └── timetable/ # Timetable and calendar view
-├── hooks/ # Custom hooks for state and logic
-└── pages/ # App pages and routes
+├── assets/              # Static assets like images, icons, etc.
+├── data/                # JSON course data used by the app
+├── features/            # Core features
+│   ├── courseTree/      # Course prerequisite/unlock graphs
+│   ├── forwardplanner/  # Planner showing future course unlocks
+│   ├── futureFeatures/  # Experimental features
+│   ├── search/          # Course search functionality
+│   └── timetable/       # Timetable and calendar view
+├── hooks/               # Custom hooks for state and logic
+└── pages/               # App pages and routes
 
 Each feature (e.g., search, planner) is modular, with its own state and UI components where possible. Hooks are used heavily to separate logic from presentation, which makes components simpler and easier to test.
 
 ## Frontend
 
-Everything runs client-side, with course data stored in static JSON files. This means the site can be served as static files with no dedicated server, which keeps hosting simple and cheap.
+Everything runs client-side, this means the site can be served as static files with no dedicated server, which keeps hosting simple and cheap.
 
 The planner uses React Flow and Dnd Kit for interactivity, while course browsing relies on hooks for search and filtering. Styling is kept consistent with Tailwind, ensuring a modern, responsive layout without much custom CSS.
 
+### Backend / Server Runtime
+
+While our app is mostly client-side, Node.js is used as the server runtime. This allows us to:
+
+- Run scraping cron jobs on the university website
+- Transform and update the course data
+- Run custom scripts for timetable exports or other utilities
+
+Using Node.js keeps these tasks lightweight and avoids the need for a full backend server.
+
 ## Data
 
-Right now, course data is stored as JSON files bundled with the app. There’s no live API or database. This keeps the architecture simple and avoids the overhead of running a backend. The tradeoff is that data updates require a rebuild of the site, which is fine for the project’s current scope.
+Right now, course data is stored as JSON files bundled with the app. This data is scraped from the university’s official course listings and processed using custom scripts. This keeps the architecture simple and avoids the overhead of running a backend, which is unnecessary for the scope of this project.
+```
