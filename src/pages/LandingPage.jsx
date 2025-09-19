@@ -11,7 +11,7 @@ export default function LandingPage() {
       </p>
       <button
         onClick={() => navigate("/search")}
-        className="px-6 py-3 bg-white text-green-700 font-semibold rounded-lg shadow-lg hover:bg-gray-200 transition"
+        className="px-6 py-3 bg-white text-accent-purple font-semibold rounded-lg shadow-lg hover:bg-gray-200 transition"
       >
         Continue to Tool →
       </button>
