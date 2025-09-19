@@ -106,7 +106,7 @@ describe("Filters", () => {
     const mockOnFilterChange = vi.fn();
     render(<Filters onFilterChange={mockOnFilterChange} />);
 
-    // Select some filters first
+    // Select some filters
     await user.click(screen.getByLabelText("SWEN"));
     await user.click(screen.getByLabelText("300"));
     await user.click(screen.getByLabelText("Trimester 1"));

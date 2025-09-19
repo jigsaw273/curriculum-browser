@@ -1,18 +1,15 @@
 import { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import {
   FaProjectDiagram,
   FaCalendarDay,
   FaArrowRight,
   FaColumns,
   FaGraduationCap,
+  FaAngleLeft,
+  FaAngleRight,
 } from "react-icons/fa";
+
 import "./App.css";
 import CourseGraphPage from "./pages/CourseGraphPage";
 import CourseInfoPage from "./pages/CourseInfoPage";
@@ -37,13 +34,34 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen flex flex-col bg-off-white">
-        <header className="bg-[#314638] text-white py-2 px-4">VUWPlanIt</header>
+        <header className="bg-[#31463e] text-[#31463e] py-2 px-4">
+          Course Planner
+        </header>
 
         <div className="flex flex-1 relative">
           <nav
-            className={`bg-light-green p-4  flex flex-col gap-4 absolute h-full pt-16 transition-all duration-300 
+            className={`bg-light-green p-4 flex flex-col gap-4 pt-4 absolute h-full transition-all duration-300 
               ${collapsed ? "w-20" : "w-64"}`}
           >
+            <div className="flex items-center justify-between mb-6">
+              {!collapsed && (
+                <span
+                  className={`text-[#125343] font-semibold text-lg mt-1 ml-3 transition-all duration-300 overflow-hidden ${
+                    collapsed ? "opacity-0 w-0" : "opacity-100 w-auto"
+                  }`}
+                >
+                  VUWPlanIt
+                </span>
+              )}
+
+              <button
+                onClick={() => setCollapsed(!collapsed)}
+                className="flex items-center font-bold !justify-center !bg-light-green hover:!bg-[#78b97c] !border-0 !border-dark-green !aspect-square h-10"
+              >
+                {collapsed ? <FaAngleRight /> : <FaAngleLeft />}
+              </button>
+            </div>
+
             <div className="flex flex-col gap-4">
               {navLinks.map(({ to, label, icon: Icon }) => (
                 <Link
@@ -62,12 +80,6 @@ function App() {
                 </Link>
               ))}
             </div>
-            <button
-              onClick={() => setCollapsed(!collapsed)}
-              className="!bg-[#78b97c] !border-0"
-            >
-              {collapsed ? ">" : "<"}
-            </button>
           </nav>
 
           <main

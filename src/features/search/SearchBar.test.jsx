@@ -1,10 +1,10 @@
 // SearchBar.test.jsx
 import React from "react";
 import { describe, it, expect, vi, afterEach } from "vitest";
-import { render, screen, cleanup } from "@testing-library/react"; // Add cleanup
+import { render, screen, cleanup } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import SearchBar from "./SearchBar";
-import "@testing-library/jest-dom"; // Add this import
+import "@testing-library/jest-dom";
 
 describe("SearchBar", () => {
   // Clean up after each test

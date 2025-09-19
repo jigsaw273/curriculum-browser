@@ -87,12 +87,12 @@ export default function MyTimetablePage() {
             Export as PNG
           </button>
           <div className="mt-4">
-            <h2 className="text-lg font-semibold mb-3 ml-2 items-center text-center">
+            <h2 className="text-lg font-semibold my-3 ml-2 items-center text-center">
               Selected Courses
             </h2>
             {activeCourses.map((course) => (
               <button
-                className="w-full flex justify-between items-center !p-2"
+                className="w-full flex justify-between items-center !p-2 !border-2"
                 key={course.courseName}
                 onClick={() => {
                   removeCourse(course.courseName);

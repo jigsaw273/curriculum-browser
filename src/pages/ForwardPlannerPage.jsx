@@ -3,7 +3,6 @@ import SearchBar from "../features/search/SearchBar.jsx";
 import useCourseSearch from "../hooks/useCourseSearch.js";
 import { useForwardPlanner } from "../hooks/useForwardPlanner.js";
 import { courseData } from "../data/prereq.js";
-import { useNavigate } from "react-router-dom";
 import "./Extended.css";
 
 import ReactFlow, {

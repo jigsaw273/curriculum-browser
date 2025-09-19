@@ -40,7 +40,7 @@
 }
 
 .custom-table tbody tr.clickable-row:hover {
-  background-color: #eeffee;
+  background-color: #f4eeff;
 }
 
 .custom-table tbody tr:nth-child(even) {

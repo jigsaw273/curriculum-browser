@@ -1,20 +1,22 @@
-import React from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "./Timetable.css";
 const localizer = momentLocalizer(moment);
-
 const COLORS = [
-  "#A997DF",
-  "#4a90a0",
-  "#9cbf88",
-  "#e39fa6",
-  "#5f3b8b",
-  "#d288d2",
+  "#7465c3", // muted rich purple
+  "#d88698", // soft dusty pink
+  "#55977d", // muted teal green
+  "#3f7aa0", // medium blue
+  "#9b6fa0", // dusty mauve
+  "#5f9b8f", // soft mint teal
+  "#d89a6a", // warm muted peach
+  "#715a99", // deep periwinkle
+  "#c276b5", // pastel lavender pink
+  "#4a8b99", // teal blue
+  "#c1a05e", // muted gold
+  "#8266a6", // soft purple
 ];
-
-// const COLORS = ["#D85C64", "#8068C2", "#5C9E84", "#4C82A6", ];
 
 export default function Timetable({ offering }) {
   // Ensure we always have an array
