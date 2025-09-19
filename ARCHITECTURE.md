@@ -41,6 +41,7 @@ src/
 │   └── timetable/       # Timetable and calendar view
 ├── hooks/               # Custom hooks for state and logic
 └── pages/               # App pages and routes
+```
 
 Each feature (e.g., search, planner) is modular, with its own state and UI components where possible. Hooks are used heavily to separate logic from presentation, which makes components simpler and easier to test.
 
@@ -63,4 +64,3 @@ Using Node.js keeps these tasks lightweight and avoids the need for a full backe
 ## Data
 
 Right now, course data is stored as JSON files bundled with the app. This data is scraped from the university’s official course listings and processed using custom scripts. This keeps the architecture simple and avoids the overhead of running a backend, which is unnecessary for the scope of this project.
-```
