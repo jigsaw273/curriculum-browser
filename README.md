@@ -15,10 +15,9 @@ VUWPlanIt is a web app that makes exploring and planning university courses a wh
 ## Tech stack
 
 - React with Vite
-- TailwindCSS with shadcn/ui for styling
+- TailwindCSS for styling
 - React Router for navigation
 - React Flow and DnD Kit for visualizations and drag-and-drop interactions
-- Deployed on GitHub Pages
 
 ## Getting started
 
@@ -47,6 +46,8 @@ src/
 ├── pages/         # Reusable UI components
 ├── assets/        # Static assets
 ```
+
+For a detailed explanation of the code structure and design decisions, see ARCHITECTURE.md
 
 ## Contributing
 

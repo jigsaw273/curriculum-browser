@@ -8,24 +8,24 @@ Since this is a project with limited time and resources, the design choices lean
 
 ### Frontend
 
-- **React** – UI library
-- **React Router Dom** – client-side navigation
-- **TailwindCSS** – styling and components
-- **ReactFlow** – visualizing prerequisite and unlock graphs
-- **Dnd Kit** – drag-and-drop interactions in the planner
-- **React Big Calendar** – timetable visualization
-- **Zustand** – state management
-- **React Hot Toast & React Icons** – notifications and icons
+- **[React](https://react.dev/)** – UI library
+- **[React Router Dom](https://reactrouter.com/)** – client-side navigation
+- **[TailwindCSS](https://tailwindcss.com/)** – styling and components
+- **[React Flow](https://reactflow.dev/)** – visualizing prerequisite and unlock graphs
+- **[Dnd Kit](https://docs.dndkit.com/)** – drag-and-drop interactions in the planner
+- **[React Big Calendar](https://github.com/jquense/react-big-calendar)** – timetable visualization
+- **[Zustand](https://zustand-demo.pmnd.rs/)** – state management
+- **[React Hot Toast](https://react-hot-toast.com/) & [React Icons](https://react-icons.github.io/react-icons/)** – notifications and icons
 
 ### Backend
 
-- **Node.js** – Server runtime
+- **[Node.js](https://nodejs.org/)** – Server runtime
 
 ### Dev Tools
 
-- **Vite** – fast bundling and development server
-- **ESLint + Prettier** – code quality and formatting
-- **Vitest + Testing Library** – testing components and hooks
+- **[Vite](https://vitejs.dev/)** – fast bundling and development server
+- **[ESLint](https://eslint.org/) + [Prettier](https://prettier.io/)** – code quality and formatting
+- **[Vitest](https://vitest.dev/) + [Testing Library](https://testing-library.com/)** – testing components and hooks
 
 ## Project Structure
 
