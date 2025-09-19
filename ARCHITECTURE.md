@@ -30,6 +30,7 @@ Since this is a project with limited time and resources, the design choices lean
 ## Project Structure
 
 ```text
+scripts/                 # scrapers and data transformation scripts
 src/
 ├── assets/              # Static assets like images, icons, etc.
 ├── data/                # JSON course data used by the app
@@ -45,7 +46,7 @@ src/
 
 Each feature (e.g., search, planner) is modular, with its own state and UI components where possible. Hooks are used heavily to separate logic from presentation, which makes components simpler and easier to test.
 
-## Frontend
+### Frontend
 
 Everything runs client-side, this means the site can be served as static files with no dedicated server, which keeps hosting simple and cheap.
 
@@ -61,6 +62,6 @@ While our app is mostly client-side, Node.js is used as the server runtime. This
 
 Using Node.js keeps these tasks lightweight and avoids the need for a full backend server.
 
-## Data
+### Data
 
 Right now, course data is stored as JSON files bundled with the app. This data is scraped from the university’s official course listings and processed using custom scripts. This keeps the architecture simple and avoids the overhead of running a backend, which is unnecessary for the scope of this project.
