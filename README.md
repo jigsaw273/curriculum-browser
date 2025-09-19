@@ -1,12 +1,61 @@
-# React + Vite
+# Curriculum Browser - VUWPlanIt
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+VUWPlanIt is a web app that makes exploring and planning university courses a whole lot easier. Instead of wrestling with static spreadsheets or digging through scattered course pages, you can search, check prerequisites, and plan your degree in one place.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Browse Offered Courses** – Find courses by name, code, or keyword.
+- **Course details** – Quickly check course coordinators, lecture days, and timings without hunting through multiple sites.
+- **Prereqs and unlocks** – See what you need before you can take a course, and what doors it opens for the future.
+- **Year Planner** – Drag and drop courses into a tri-by-tri view to map out your degree.
+- **Timetable Builder** - Plan and build your trimester timetable ahead of time
+- **Forward Planner** – Select the courses you've taken, and view the courses you've unlocked
+- **Explore Course Tree** - Explore the whole ECS course tree
 
-## Expanding the ESLint configuration
+## Tech stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React with Vite
+- TailwindCSS with shadcn/ui for styling
+- React Router for navigation
+- React Flow and DnD Kit for visualizations and drag-and-drop interactions
+- Deployed on GitHub Pages
+
+## Getting started
+
+To run this project locally, clone the repo and install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
+
+```bash
+npm run dev
+```
+
+## Project structure
+
+```bash
+src/
+│   App.jsx        # Main app wrapper
+│   main.jsx       # Entry point
+│   index.css      # Global styles
+│
+├── features/      # Search, year planner, timetable, forward planner
+├── hooks/         # Custom hooks
+├── pages/         # Reusable UI components
+├── assets/        # Static assets
+```
+
+## Contributing
+
+Contributions are welcome. Open an issue or submit a pull request if you’d like to improve the project.
+
+## License
+
+MIT License
+
+---
+
+Do you want me to also add a **short “Why I built this”** section (something that explains the motivation and gives it personality), or should we keep it strictly about the app?
