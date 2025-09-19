@@ -1,17 +1,31 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { courseDetails } from "../../data/courseDetails";
 import "./CourseTree.css";
 
-// Recursively builds the tree structure, inspired from from NUSMODs
-const Tree = ({ prereq }) => {
-  if (!prereq) {
-    return <div className="node prereq-node">No prereqs</div>;
+const formatCourseUrl = (course) => {
+  const match = course.match(/^([A-Z]+)(\d+)$/i);
+  if (!match) return course;
+  const [, code, num] = match;
+  return `/course/${code}/${num}`;
+};
+
+// Recursively builds the tree structure, inspired by NUSMODs
+const Tree = ({ prereq, handleClick }) => {
+  if (!prereq) return <div className="node prereq-node">No prereqs</div>;
+
+  if (prereq.type === "COURSE") {
+    return (
+      <div
+        className="node prereq-node clickable"
+        onClick={() => handleClick(prereq.course)}
+      >
+        {prereq.course}
+      </div>
+    );
   }
 
-  if (prereq.type == "COURSE") {
-    return <div className="node prereq-node">{prereq.course}</div>;
-  }
-
-  if ((prereq.type == "AND" || prereq.type == "OR") && prereq.clauses) {
+  if ((prereq.type === "AND" || prereq.type === "OR") && prereq.clauses) {
     const multiple = prereq.clauses.length > 1;
 
     return (
@@ -19,13 +33,13 @@ const Tree = ({ prereq }) => {
         <li className="branch">
           {multiple && (
             <div className="node conditional">
-              {prereq.type == "AND" ? "all of" : "one of"}
+              {prereq.type === "AND" ? "all of" : "one of"}
             </div>
           )}
           <ul className="subsection-container">
             {prereq.clauses.map((clause, i) => (
               <li key={i} className="branch">
-                <Tree prereq={clause} />
+                <Tree prereq={clause} handleClick={handleClick} />
               </li>
             ))}
           </ul>
@@ -33,18 +47,32 @@ const Tree = ({ prereq }) => {
       </ul>
     );
   }
+
   return null;
 };
 
 export default function CourseTree({ course, prereqData, postreqData }) {
+  const navigate = useNavigate();
+
+  const handleClick = (courseCode) => {
+    if (courseDetails[courseCode]) {
+      navigate(formatCourseUrl(courseCode));
+    }
+  };
+
   return (
     <div className="course-tree-container">
       {postreqData && postreqData.length > 0 ? (
         <>
           <ul className="subsection-container">
-            {postreqData.map((course, i) => (
+            {postreqData.map((courseName, i) => (
               <li key={i} className="branch prereq-branch">
-                <div className="node postreq-node">{course}</div>
+                <div
+                  className="node postreq-node clickable"
+                  onClick={() => handleClick(courseName)}
+                >
+                  {courseName}
+                </div>
               </li>
             ))}
           </ul>
@@ -63,9 +91,14 @@ export default function CourseTree({ course, prereqData, postreqData }) {
 
       <ul className="tree root">
         <li className="branch">
-          <div className="node course-node">{course}</div>
+          <div
+            className="node course-node clickable"
+            onClick={() => handleClick(course)}
+          >
+            {course}
+          </div>
           {prereqData && prereqData.clauses.length > 0 ? (
-            <Tree prereq={prereqData} />
+            <Tree prereq={prereqData} handleClick={handleClick} />
           ) : (
             <div className="node prereq-node">No prereqs</div>
           )}

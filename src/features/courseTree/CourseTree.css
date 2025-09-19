@@ -1,65 +1,46 @@
 :root {
-  --connector-size: 0.75rem;
   --btn-border-radius: 0.25rem;
+  --connector-size: 0.75rem;
 }
 
 .course-tree-container {
-  width: 40em;
   display: flex;
   align-items: center;
-  /* Leave some space for the tooltip */
-  padding: 3rem 0;
   justify-content: center;
+  width: 40em;
+  padding: 3rem 0;
   margin: 0 auto;
+  /* Leave some space for the tooltip */
 }
 
 .tree,
 .subsection-container {
-  position: relative;
   list-style: none;
   padding: 0;
   margin: 0.125rem 0;
+  position: relative;
   text-align: center;
 }
 
 .node {
-  position: relative;
-  display: flex;
   flex: 0 1 4rem;
+  display: flex;
   justify-content: center;
   align-items: center;
   padding: 0.3rem 0.4rem;
   margin: 0 0 2px var(--connector-size);
+  position: relative;
   border-radius: var(--btn-border-radius);
   white-space: nowrap;
 }
 
 .node::before {
+  content: '';
+  position: absolute;
   top: 50%;
   left: calc(-1 * var(--connector-size));
   width: var(--connector-size);
   height: 1px;
-  content: '';
-  position: absolute;
-  background: #b8b8b8;
-}
-/* 
-.link {
-  display: block;
-  width: 100%;
-  color: currentColor;
-}
-
-.link:hover {
-  color: currentColor;
-} */
-
-.node::before,
-.conditional::after,
-.branch::before,
-.branch::after {
-  content: '';
-  position: absolute;
   background: #b8b8b8;
 }
 
@@ -70,12 +51,12 @@
 }
 
 .conditional::after {
+  content: '';
+  position: absolute;
   top: 50%;
   right: calc(-1 * var(--connector-size));
   width: var(--connector-size);
   height: 1px;
-  content: '';
-  position: absolute;
   background: #b8b8b8;
 }
 
@@ -87,11 +68,11 @@
 
 .branch::before,
 .branch::after {
+  content: '';
+  position: absolute;
   left: 0;
   width: 1px;
   height: 50%;
-  content: '';
-  position: absolute;
   background: #b8b8b8;
 }
 
@@ -115,25 +96,25 @@
 }
 
 .postreq-node {
+  flex: 0 1 6em;
+  margin: 0 var(--connector-size) 1px 0;
   color: #291b5a;
   background-color: #beaff5;
-  margin: 0 var(--connector-size) 1px 0;
-  flex: 0 1 6em;
   border-color: 8C7BC9#6f53d4;
 }
 
 .postreq-node::before {
-  right: calc(-1 * var(--connector-size));
-  left: auto;
   content: '';
   position: absolute;
+  right: calc(-1 * var(--connector-size));
+  left: auto;
   background: #b8b8b8;
 }
 
 .course-node {
-  border-color: #e77cae;
   color: #412246;
   background-color: #ddb5dd;
+  border-color: #e77cae;
   margin-left: 0;
 }
 
@@ -142,7 +123,37 @@
 }
 
 .prereq-node {
-  border-color: #38bdbd;
   color: #102525;
   background-color: #8dc7c7;
+  border-color: #38bdbd;
 }
+
+.node::before,
+.conditional::after,
+.branch::before,
+.branch::after {
+  content: '';
+  position: absolute;
+  background: #b8b8b8;
+}
+
+.clickable {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.clickable:hover {
+  filter: brightness(90%); /* slightly darker */
+}
+
+
+/* 
+.link {
+  display: block;
+  width: 100%;
+  color: currentColor;
+}
+
+.link:hover {
+  color: currentColor;
+} */
