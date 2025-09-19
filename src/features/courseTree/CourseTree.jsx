@@ -91,12 +91,7 @@ export default function CourseTree({ course, prereqData, postreqData }) {
 
       <ul className="tree root">
         <li className="branch">
-          <div
-            className="node course-node clickable"
-            onClick={() => handleClick(course)}
-          >
-            {course}
-          </div>
+          <div className="node course-node">{course}</div>
           {prereqData && prereqData.clauses.length > 0 ? (
             <Tree prereq={prereqData} handleClick={handleClick} />
           ) : (
