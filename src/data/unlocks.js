@@ -1,77 +1,522 @@
 export const unlockGraph = {
-  AIML427: {
-    unlocks: [],
+  "AIML131": {
+    "unlocks": [
+      "AIML231",
+      "AIML232"
+    ]
   },
-  COMP102: {
-    unlocks: ["COMP103", "ENGR110", "CGRA151"],
+  "MATH177": {
+    "unlocks": [
+      "AIML231",
+      "AIML232",
+      "AIML331",
+      "AIML427"
+    ]
   },
-  COMP112: {
-    unlocks: ["COMP103", "ENGR110", "CGRA151"],
+  "QUAN102": {
+    "unlocks": [
+      "AIML231",
+      "AIML232",
+      "AIML427"
+    ]
   },
-  COMP103: {
-    unlocks: ["COMP261", "CGRA252", "NWEN241", "NWEN243", "SWEN221"],
+  "STAT193": {
+    "unlocks": [
+      "AIML231",
+      "AIML232",
+      "AIML427",
+      "CYBR372"
+    ]
   },
-  ENGR123: {
-    unlocks: ["COMP261", "CYBR372", "SWEN304"],
+  "COMP103": {
+    "unlocks": [
+      "AIML231",
+      "AIML232",
+      "COMP261",
+      "CGRA252",
+      "NWEN241",
+      "NWEN243",
+      "SWEN221"
+    ]
   },
-  MATH161: {
-    unlocks: ["COMP261", "CYBR372", "SWEN304"],
+  "COMP132": {
+    "unlocks": [
+      "AIML231"
+    ]
   },
-  CYBR171: {
-    unlocks: ["CYBR271", "CYBR371"],
+  "AIML231": {
+    "unlocks": [
+      "AIML232",
+      "AIML331",
+      "AIML332",
+      "AIML333",
+      "AIML339",
+      "AIML427"
+    ]
   },
-  NWEN241: {
-    unlocks: ["CYBR271", "CGRA350", "CGRA352", "CGRA354", "SWEN326"],
+  "ENGR123": {
+    "unlocks": [
+      "AIML232",
+      "AIML320",
+      "AIML427",
+      "COMP261",
+      "CYBR372",
+      "SWEN304"
+    ]
   },
-  NWEN243: {
-    unlocks: ["CYBR371", "CYBR372"],
+  "EEEN220": {
+    "unlocks": [
+      "AIML232",
+      "EEEN320"
+    ]
   },
-  CYBR271: {
-    unlocks: ["CYBR372", "CYBR373"],
+  "COMP261": {
+    "unlocks": [
+      "AIML320",
+      "AIML331",
+      "AIML332",
+      "AIML333",
+      "SWEN303",
+      "SWEN304"
+    ]
   },
-  STAT193: {
-    unlocks: ["CYBR372"],
+  "NWEN241": {
+    "unlocks": [
+      "AIML320",
+      "AIML331",
+      "AIML332",
+      "AIML333",
+      "CYBR271",
+      "CGRA350",
+      "CGRA352",
+      "CGRA354",
+      "SWEN326",
+      "EEEN301"
+    ]
   },
-  CYBR371: {
-    unlocks: ["CYBR471"],
+  "SWEN221": {
+    "unlocks": [
+      "AIML320",
+      "AIML331",
+      "AIML332",
+      "AIML333",
+      "SWEN225",
+      "SWEN303",
+      "SWEN304"
+    ]
   },
-  ENGR101: {
-    unlocks: ["ENGR110", "ENGR201"],
+  "MATH151": {
+    "unlocks": [
+      "AIML320",
+      "ENGR222",
+      "CGRA352",
+      "CGRA354",
+      "EEEN220"
+    ]
   },
-  ENGR110: {
-    unlocks: ["ENGR201"],
+  "MATH161": {
+    "unlocks": [
+      "AIML320",
+      "COMP261",
+      "CYBR372",
+      "SWEN304",
+      "EEEN202"
+    ]
   },
-  ENGR201: {
-    unlocks: ["ENGR301"],
+  "MATH277": {
+    "unlocks": [
+      "AIML320"
+    ]
   },
-  ENGR301: {
-    unlocks: ["ENGR302"],
+  "QUAN203": {
+    "unlocks": [
+      "AIML320"
+    ]
   },
-  ENGR121: {
-    unlocks: ["ENGR122", "ENGR123", "CGRA352", "CGRA354"],
+  "STAT292": {
+    "unlocks": [
+      "AIML320",
+      "AIML331"
+    ]
   },
-  MATH141: {
-    unlocks: ["ENGR122"],
+  "AIML232": {
+    "unlocks": [
+      "AIML331",
+      "AIML332",
+      "AIML333",
+      "AIML339",
+      "AIML427"
+    ]
   },
-  DSDN142: {
-    unlocks: ["CGRA151"],
+  "AIML320": {
+    "unlocks": [
+      "AIML331",
+      "AIML332",
+      "AIML333",
+      "AIML339",
+      "AIML425",
+      "AIML426",
+      "AIML427",
+      "AIML431"
+    ]
   },
-  CGRA151: {
-    unlocks: ["CGRA252"],
+  "COMP307": {
+    "unlocks": [
+      "AIML331",
+      "AIML332",
+      "AIML333",
+      "AIML339",
+      "AIML425",
+      "AIML426",
+      "AIML427",
+      "AIML428",
+      "AIML431"
+    ]
   },
-  CGRA252: {
-    unlocks: ["CGRA350", "CGRA352", "CGRA354"],
+  "COMP309": {
+    "unlocks": [
+      "AIML331",
+      "AIML332",
+      "AIML333",
+      "AIML339",
+      "AIML427"
+    ]
   },
-  MATH151: {
-    unlocks: ["CGRA352", "CGRA354"],
+  "ENGR121": {
+    "unlocks": [
+      "AIML331",
+      "ENGR122",
+      "ENGR123",
+      "ENGR142",
+      "ENGR222",
+      "CGRA352",
+      "CGRA354",
+      "EEEN201",
+      "EEEN202",
+      "EEEN220"
+    ]
   },
-  SWEN221: {
-    unlocks: ["SWEN225", "SWEN303", "SWEN304"],
+  "AIML331": {
+    "unlocks": [
+      "AIML339",
+      "AIML425",
+      "AIML426",
+      "AIML427",
+      "AIML428",
+      "AIML431"
+    ]
   },
-  SWEN225: {
-    unlocks: ["SWEN301", "SWEN326"],
+  "AIML332": {
+    "unlocks": [
+      "AIML339",
+      "AIML425",
+      "AIML426",
+      "AIML427",
+      "AIML428",
+      "AIML431"
+    ]
   },
-  COMP261: {
-    unlocks: ["SWEN303", "SWEN304"],
+  "AIML333": {
+    "unlocks": [
+      "AIML339",
+      "AIML425",
+      "AIML426",
+      "AIML427",
+      "AIML428",
+      "AIML431"
+    ]
   },
+  "AIML420": {
+    "unlocks": [
+      "AIML425",
+      "AIML426",
+      "AIML427",
+      "AIML431"
+    ]
+  },
+  "DATA305": {
+    "unlocks": [
+      "AIML425",
+      "AIML426",
+      "AIML427",
+      "AIML428",
+      "AIML431"
+    ]
+  },
+  "DATA475": {
+    "unlocks": [
+      "AIML425",
+      "AIML426",
+      "AIML427",
+      "AIML428",
+      "AIML431"
+    ]
+  },
+  "AIML421": {
+    "unlocks": [
+      "AIML427"
+    ]
+  },
+  "DATA301": {
+    "unlocks": [
+      "AIML427"
+    ]
+  },
+  "DATA303": {
+    "unlocks": [
+      "AIML427"
+    ]
+  },
+  "DATA471": {
+    "unlocks": [
+      "AIML427"
+    ]
+  },
+  "DATA473": {
+    "unlocks": [
+      "AIML427"
+    ]
+  },
+  "STAT393": {
+    "unlocks": [
+      "AIML427"
+    ]
+  },
+  "STAT394": {
+    "unlocks": [
+      "AIML427"
+    ]
+  },
+  "COMP102": {
+    "unlocks": [
+      "COMP103",
+      "ENGR110",
+      "CGRA151",
+      "EEEN201",
+      "EEEN202"
+    ]
+  },
+  "COMP112": {
+    "unlocks": [
+      "COMP103",
+      "ENGR110",
+      "CGRA151",
+      "EEEN201",
+      "EEEN202"
+    ]
+  },
+  "CYBR171": {
+    "unlocks": [
+      "CYBR271",
+      "CYBR371"
+    ]
+  },
+  "NWEN243": {
+    "unlocks": [
+      "CYBR371",
+      "CYBR372"
+    ]
+  },
+  "CYBR271": {
+    "unlocks": [
+      "CYBR372",
+      "CYBR373"
+    ]
+  },
+  "CYBR371": {
+    "unlocks": [
+      "CYBR471"
+    ]
+  },
+  "ENGR101": {
+    "unlocks": [
+      "ENGR110",
+      "ENGR201",
+      "EEEN201",
+      "EEEN202"
+    ]
+  },
+  "ENGR110": {
+    "unlocks": [
+      "ENGR201",
+      "EEEN201"
+    ]
+  },
+  "ENGR201": {
+    "unlocks": [
+      "ENGR301",
+      "ENGR401",
+      "ENGR489"
+    ]
+  },
+  "ENGR301": {
+    "unlocks": [
+      "ENGR302",
+      "ENGR401",
+      "ENGR489"
+    ]
+  },
+  "MATH141": {
+    "unlocks": [
+      "ENGR122",
+      "ENGR142",
+      "EEEN201"
+    ]
+  },
+  "MATH132": {
+    "unlocks": [
+      "ENGR141"
+    ]
+  },
+  "ENGR141": {
+    "unlocks": [
+      "ENGR142"
+    ]
+  },
+  "ENGR122": {
+    "unlocks": [
+      "ENGR222",
+      "EEEN203",
+      "EEEN204",
+      "EEEN220"
+    ]
+  },
+  "MATH142": {
+    "unlocks": [
+      "ENGR222",
+      "EEEN203",
+      "EEEN204",
+      "EEEN220"
+    ]
+  },
+  "ENGR302": {
+    "unlocks": [
+      "ENGR401",
+      "ENGR489"
+    ]
+  },
+  "DSDN142": {
+    "unlocks": [
+      "CGRA151"
+    ]
+  },
+  "CGRA151": {
+    "unlocks": [
+      "CGRA252"
+    ]
+  },
+  "CGRA252": {
+    "unlocks": [
+      "CGRA350",
+      "CGRA352",
+      "CGRA354"
+    ]
+  },
+  "SWEN225": {
+    "unlocks": [
+      "SWEN301",
+      "SWEN326"
+    ]
+  },
+  "ENGR142": {
+    "unlocks": [
+      "EEEN203",
+      "EEEN204"
+    ]
+  },
+  "PHYS142": {
+    "unlocks": [
+      "EEEN203",
+      "EEEN204"
+    ]
+  },
+  "PHYS115": {
+    "unlocks": [
+      "EEEN203",
+      "EEEN204"
+    ]
+  },
+  "EEEN202": {
+    "unlocks": [
+      "EEEN301"
+    ]
+  },
+  "ECEN202": {
+    "unlocks": [
+      "EEEN301"
+    ]
+  },
+  "EEEN203": {
+    "unlocks": [
+      "EEEN313",
+      "EEEN315"
+    ]
+  },
+  "ECEN203": {
+    "unlocks": [
+      "EEEN313",
+      "EEEN315"
+    ]
+  },
+  "EEEN204": {
+    "unlocks": [
+      "EEEN313"
+    ]
+  },
+  "ECEN204": {
+    "unlocks": [
+      "EEEN313"
+    ]
+  },
+  "ECEN220": {
+    "unlocks": [
+      "EEEN320"
+    ]
+  },
+  "EEEN201": {
+    "unlocks": [
+      "EEEN325"
+    ]
+  },
+  "EEEN313": {
+    "unlocks": [
+      "EEEN401"
+    ]
+  },
+  "ENGR222": {
+    "unlocks": [
+      "EEEN401"
+    ]
+  },
+  "MATH243": {
+    "unlocks": [
+      "EEEN401"
+    ]
+  },
+  "EEEN301": {
+    "unlocks": [
+      "EEEN402"
+    ]
+  },
+  "ECEN301": {
+    "unlocks": [
+      "EEEN402",
+      "EEEN425"
+    ]
+  },
+  "EEEN315": {
+    "unlocks": [
+      "EEEN415"
+    ]
+  },
+  "ECEN315": {
+    "unlocks": [
+      "EEEN415"
+    ]
+  },
+  "EEEN325": {
+    "unlocks": [
+      "EEEN425"
+    ]
+  }
 };

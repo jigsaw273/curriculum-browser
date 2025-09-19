@@ -7,7 +7,6 @@
   overflow-x: auto;
 }
 
-/* Table layout */
 .custom-table {
   width: 100%;
   border-collapse: separate;
@@ -17,7 +16,6 @@
   font-weight: 350;
 }
 
-/* Header */
 .custom-table thead {
   background-color: #f8f9fa;
 }
@@ -28,17 +26,14 @@
   font-weight: 600;
   color: #333;
   border-bottom: 2px solid #eee;
-  /* white-space:; */
 }
 
-/* Rows */
 .custom-table td {
   padding: 1em 1.5em;
   border-bottom: 1px solid #f1f1f1;
   color: #000000;
 }
 
-/* Hover effect for rows */
 .clickable-row {
   cursor: pointer;
   transition: background-color 0.2s ease;
@@ -48,7 +43,6 @@
   background-color: #eeffee;
 }
 
-/* Optional: subtle striped effect */
 .custom-table tbody tr:nth-child(even) {
   background-color: #fcfcfc;
 }

@@ -23,10 +23,16 @@ import YearPlannerPage from "./pages/YearPlannerPage";
 import MyTimetablePage from "./pages/MyTimetablePage";
 import SearchPage from "./pages/SearchPage";
 import ExtendedCourseFlow from "./pages/ExtendedCourseFlow";
+import LandingPage from "./pages/LandingPage";
 import CurriculumGraph from "./pages/CurriculumGraph";
 
 function App() {
   const [collapsed, setCollapsed] = useState(false);
+  const [showLanding, setShowLanding] = useState(true);
+
+  if (showLanding) {
+    return <LandingPage onContinue={() => setShowLanding(false)} />;
+  }
 
   const navLinks = [
     { to: "/search", label: "Course Search", icon: FaGraduationCap },
@@ -78,6 +84,7 @@ function App() {
             }`}
           >
             <Routes>
+              {/* <Route path="/" element={<LandingPage />} /> */}
               <Route path="/search" element={<SearchPage />} />
               <Route path="/tree" element={<ForwardPlannerCard />} />
               <Route path="/dependency-tree" element={<ForwardPlanner />} />

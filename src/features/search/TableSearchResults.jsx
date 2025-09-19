@@ -3,6 +3,10 @@ import "./TableSearchResults.css";
 export default function TableSearchResults({ results }) {
   const handleRowClick = (course) => {
     window.open(`/course/${course.courseCode}/${course.courseNum}`, "_blank");
+    // window.open(
+    //   `https://www.wgtn.ac.nz/courses/${course.courseCode}/${course.courseNum}`,
+    //   "_blank"
+    // );
   };
 
   return (

@@ -205,7 +205,7 @@ export default function ExtendedCourseFlow() {
             Calculate
           </button>
           <button
-            className="flex-1 py-2 !border-2 !bg-error-red text-white"
+            className="flex-1 py-2 !border-2 !border-error-red !bg-error-red text-white hover:!bg-red-hover hover:!border-red-hover"
             onClick={() => {
               setTakenCourses([]);
               setNodes([]);
@@ -241,7 +241,31 @@ export default function ExtendedCourseFlow() {
             fitViewOptions={{ padding: 0.2 }}
           >
             <Background />
-            <Controls />
+            <Panel position="bottom-left">
+              <div className="p-3 mt-4 bg-white/90 rounded text-sm space-y-2 w-fit ">
+                <div className="flex items-center gap-2">
+                  <span
+                    className="w-4 h-4 rounded"
+                    style={{ backgroundColor: "#0A2342" }}
+                  ></span>
+                  <span className="text-gray-800">Taken</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span
+                    className="w-4 h-4 rounded"
+                    style={{ backgroundColor: "#2D8B73" }}
+                  ></span>
+                  <span className="text-gray-800 ">Unlocked</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span
+                    className="w-4 h-4 rounded"
+                    style={{ backgroundColor: "#DEDDDC" }}
+                  ></span>
+                  <span className="text-gray-800">Possible</span>
+                </div>
+              </div>
+            </Panel>
           </ReactFlow>
         </div>
       </div>

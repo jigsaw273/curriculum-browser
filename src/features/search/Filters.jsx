@@ -1,7 +1,17 @@
 import React, { useState } from "react";
 
 const filterOptions = {
-  courses: ["SWEN", "ENGR", "COMP", "NWEN", "AIML", "CYBR", "RESE", "EEEN"],
+  courses: [
+    "SWEN",
+    "ENGR",
+    "COMP",
+    "NWEN",
+    "AIML",
+    "CYBR",
+    "CGRA",
+    "RESE",
+    "EEEN",
+  ],
   year: ["100", "200", "300", "400", "500"],
   trimester: ["Trimester 1", "Trimester 2", "Trimester 3"],
 };

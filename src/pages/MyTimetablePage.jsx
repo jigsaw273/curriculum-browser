@@ -50,8 +50,6 @@ export default function MyTimetablePage() {
               </p>
             </div>
             <div className="">
-              {/* <button onClick={() => setActiveTab("t1")}>Trimester 1</button>
-              <button onClick={() => setActiveTab("t2")}>Trimester 2</button> */}
               <button
                 onClick={() => setActiveTab("t1")}
                 className={`${
@@ -81,7 +79,7 @@ export default function MyTimetablePage() {
         <div className="flex flex-col gap-2 pl-8 w-full">
           <button
             onClick={() => removeManyCourses(activeCourses)}
-            className="px-4 py-2 !bg-error-red text-white"
+            className="px-4 py-2 !bg-error-red text-white hover:!bg-red-hover hover:!border-red-hover"
           >
             Clear All
           </button>
@@ -94,7 +92,6 @@ export default function MyTimetablePage() {
             </h2>
             {activeCourses.map((course) => (
               <button
-                // className="!rounded-full !px-4 !py-2"
                 className="w-full flex justify-between items-center !p-2"
                 key={course.courseName}
                 onClick={() => {

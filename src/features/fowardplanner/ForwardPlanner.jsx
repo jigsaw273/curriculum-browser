@@ -1,4 +1,10 @@
-import React, { useLayoutEffect, useCallback, useEffect, useMemo } from "react";
+import React, {
+  useLayoutEffect,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import ReactFlow, {
   Background,
   Controls,
@@ -24,8 +30,8 @@ const getLayoutedElements = (nodes, edges, direction = "TB") => {
   const isHorizontal = direction === "LR";
   dagreGraph.setGraph({
     rankdir: direction,
-    nodesep: 30, // spacing between nodes
-    ranksep: 100, // spacing between levels
+    nodesep: 10, // spacing between nodes
+    ranksep: 80, // spacing between levels
     marginx: 10,
     marginy: 10,
   });
@@ -67,6 +73,7 @@ export default function ForwardPlanner() {
 
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const [layoutDirection, setLayoutDirection] = useState("TB"); // TB = vertical, LR = horizontal
 
   //Memoize the base nodes (without styling)
   const baseNodes = useMemo(() => {
@@ -76,6 +83,12 @@ export default function ForwardPlanner() {
       draggable: true,
     }));
   }, []);
+
+  const toggleLayout = () => {
+    const newDirection = layoutDirection === "TB" ? "LR" : "TB";
+    setLayoutDirection(newDirection);
+    onLayout(newDirection);
+  };
 
   // Memoize prerequisite edges
   const prereqEdges = useMemo(() => {
@@ -237,11 +250,8 @@ export default function ForwardPlanner() {
           </div>
         </Panel>
         <Panel position="top-right">
-          <button className="panel-button" onClick={() => onLayout("TB")}>
-            Vertical layout
-          </button>
-          <button className="panel-button" onClick={() => onLayout("LR")}>
-            Horizontal layout
+          <button className="panel-button" onClick={toggleLayout}>
+            {layoutDirection === "TB" ? "Horizontal layout" : "Vertical layout"}
           </button>
         </Panel>
 

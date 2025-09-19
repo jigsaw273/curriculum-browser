@@ -28,7 +28,7 @@ export default function SearchPage() {
         </div>
         <div className="w-64 shrink-0">
           <button
-            className="w-full !m-0 !mb-5 !bg-dark-green text-white !py-4"
+            className="w-full !m-0 !mb-5 !bg-dark-green hover:!bg-[#196451] text-white !py-4"
             onClick={() => {
               setTableDisplay(!tableDisplay);
             }}

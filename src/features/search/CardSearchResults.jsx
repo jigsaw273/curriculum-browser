@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import React from "react";
 
 export default function CardSearchResults({ results }) {
   const handleRowClick = (course) => {
@@ -14,13 +14,12 @@ export default function CardSearchResults({ results }) {
           onClick={() => handleRowClick(item)}
         >
           <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
-            {/* Left side - details */}
-            <div className="flex-1 p-4">
+            <div className="flex-1 p-4 ">
               <h1 className="text-lg font-base text-accent-purple hover:text-dark-purple transition">
                 {item.courseId} — {item.courseName}
               </h1>
               <p className="text-sm text-gray-600 mt-1">
-                <span className="font-medium">Coordinator:</span>{" "}
+                <span className="font-medium">Course Coordinator:</span>{" "}
                 {item.offerings.find((o) => o.courseCoordinator)
                   ?.courseCoordinator || "TBA"}
               </p>
