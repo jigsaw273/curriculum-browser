@@ -56,7 +56,7 @@ function App() {
 
               <button
                 onClick={() => setCollapsed(!collapsed)}
-                className="flex items-center font-bold !justify-center !bg-light-green hover:!bg-[#78b97c] !border-0 !border-dark-green !aspect-square h-10"
+                className="flex items-center font-bold text-[#125343] !justify-center !bg-light-green hover:!bg-[#78b97c] !border-0 !border-dark-green !aspect-square h-10"
               >
                 {collapsed ? <FaAngleRight /> : <FaAngleLeft />}
               </button>
