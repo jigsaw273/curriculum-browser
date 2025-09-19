@@ -1,4 +1,351 @@
 export const courseDependencies = {
+  AIML131: {
+    prerequisites: {
+      type: "AND",
+      clauses: [],
+    },
+    corequisites: {
+      type: "AND",
+      clauses: [],
+    },
+    restrictions: {
+      type: "OR",
+      clauses: [
+        { type: "COURSE", course: "COMP307" },
+        { type: "COURSE", course: "COMP309" },
+      ],
+    },
+  },
+  AIML231: {
+    prerequisites: {
+      type: "AND",
+      clauses: [
+        {
+          type: "OR",
+          clauses: [
+            { type: "COURSE", course: "AIML131" },
+            { type: "COURSE", course: "MATH177" },
+            { type: "COURSE", course: "QUAN102" },
+            { type: "COURSE", course: "STAT193" },
+            {
+              type: "POINTS",
+              minPoints: 60,
+              level: 200,
+              subjects: ["COMP", "CGRA", "CYBR", "SWEN", "EEEN"],
+            },
+          ],
+        },
+        {
+          type: "OR",
+          clauses: [
+            { type: "COURSE", course: "COMP103" },
+            { type: "COURSE", course: "COMP132" },
+          ],
+        },
+      ],
+    },
+    corequisites: {
+      type: "AND",
+      clauses: [],
+    },
+    restrictions: {
+      type: "OR",
+      clauses: [
+        { type: "COURSE", course: "AIML320" },
+        { type: "COURSE", course: "COMP307" },
+        { type: "COURSE", course: "COMP309" },
+        { type: "COURSE", course: "DATA302" },
+      ],
+    },
+  },
+  AIML232: {
+    prerequisites: {
+      type: "AND",
+      clauses: [
+        {
+          type: "OR",
+          clauses: [
+            { type: "COURSE", course: "AIML131" },
+            { type: "COURSE", course: "AIML231" },
+          ],
+        },
+        { type: "COURSE", course: "COMP103" },
+        {
+          type: "OR",
+          clauses: [
+            { type: "COURSE", course: "ENGR123" },
+            { type: "COURSE", course: "MATH177" },
+            { type: "COURSE", course: "STAT193" },
+            { type: "COURSE", course: "QUAN102" },
+            { type: "COURSE", course: "EEEN220" },
+          ],
+        },
+      ],
+    },
+    corequisites: {
+      type: "AND",
+      clauses: [],
+    },
+    restrictions: {
+      type: "OR",
+      clauses: [
+        { type: "COURSE", course: "AIML320" },
+        { type: "COURSE", course: "COMP307" },
+      ],
+    },
+  },
+  AIML320: {
+    prerequisites: {
+      type: "AND",
+      clauses: [
+        {
+          type: "OR",
+          clauses: [
+            { type: "COURSE", course: "COMP261" },
+            { type: "COURSE", course: "NWEN241" },
+            { type: "COURSE", course: "SWEN221" },
+            {
+              type: "GRADE",
+              courseA: "DATA201",
+              courseB: "DATA202",
+              minGrade: "B",
+            },
+          ],
+        },
+        {
+          type: "OR",
+          clauses: [
+            { type: "COURSE", course: "ENGR123" },
+            { type: "COURSE", course: "MATH151" },
+            { type: "COURSE", course: "MATH161" },
+            { type: "COURSE", course: "MATH277" },
+            { type: "COURSE", course: "QUAN203" },
+            { type: "COURSE", course: "STAT292" },
+          ],
+        },
+      ],
+    },
+    corequisites: {
+      type: "AND",
+      clauses: [],
+    },
+    restrictions: {
+      type: "OR",
+      clauses: [
+        { type: "COURSE", course: "AIML231" },
+        { type: "COURSE", course: "AIML232" },
+        { type: "COURSE", course: "AIML420" },
+        { type: "COURSE", course: "AIML421" },
+        { type: "COURSE", course: "COMP307" },
+        { type: "COURSE", course: "COMP309" },
+        { type: "COURSE", course: "COMP420" },
+      ],
+    },
+  },
+  AIML331: {
+    prerequisites: {
+      type: "AND",
+      clauses: [
+        {
+          type: "OR",
+          clauses: [
+            { type: "COURSE", course: "AIML231" },
+            { type: "COURSE", course: "AIML232" },
+            { type: "COURSE", course: "AIML320" },
+            { type: "COURSE", course: "COMP307" },
+            { type: "COURSE", course: "COMP309" },
+          ],
+        },
+        {
+          type: "OR",
+          clauses: [
+            { type: "COURSE", course: "COMP261" },
+            { type: "COURSE", course: "NWEN241" },
+            { type: "COURSE", course: "SWEN221" },
+            {
+              type: "GRADE",
+              courseA: "AIML231",
+              courseB: "DATA202",
+              minGrade: "B",
+            },
+          ],
+        },
+        {
+          type: "OR",
+          clauses: [
+            { type: "COURSE", course: "ENGR121" },
+            { type: "COURSE", course: "MATH177" },
+            { type: "COURSE", course: "STAT292" },
+          ],
+        },
+      ],
+    },
+    corequisites: {
+      type: "AND",
+      clauses: [],
+    },
+    restrictions: {
+      type: "AND",
+      clauses: [],
+    },
+  },
+  AIML332: {
+    prerequisites: {
+      type: "AND",
+      clauses: [
+        {
+          type: "OR",
+          clauses: [
+            { type: "COURSE", course: "AIML231" },
+            { type: "COURSE", course: "AIML232" },
+            { type: "COURSE", course: "AIML320" },
+            { type: "COURSE", course: "COMP307" },
+            { type: "COURSE", course: "COMP309" },
+          ],
+        },
+        {
+          type: "OR",
+          clauses: [
+            { type: "COURSE", course: "COMP261" },
+            { type: "COURSE", course: "NWEN241" },
+            { type: "COURSE", course: "SWEN221" },
+            {
+              type: "GRADE",
+              course: ["AIML231", "DATA202"],
+              minGrade: "B",
+            },
+          ],
+        },
+      ],
+    },
+    corequisites: { type: "AND", clauses: [] },
+    restrictions: { type: "AND", clauses: [] },
+  },
+
+  AIML333: {
+    prerequisites: {
+      type: "AND",
+      clauses: [
+        {
+          type: "OR",
+          clauses: [
+            { type: "COURSE", course: "AIML231" },
+            { type: "COURSE", course: "AIML232" },
+            { type: "COURSE", course: "AIML320" },
+            { type: "COURSE", course: "COMP307" },
+            { type: "COURSE", course: "COMP309" },
+          ],
+        },
+        {
+          type: "OR",
+          clauses: [
+            { type: "COURSE", course: "COMP261" },
+            { type: "COURSE", course: "NWEN241" },
+            { type: "COURSE", course: "SWEN221" },
+          ],
+        },
+      ],
+    },
+    corequisites: { type: "AND", clauses: [] },
+    restrictions: { type: "AND", clauses: [] },
+  },
+
+  AIML339: {
+    prerequisites: {
+      type: "AND",
+      clauses: [
+        {
+          type: "OR",
+          clauses: [
+            { type: "COURSE", course: "AIML231" },
+            { type: "COURSE", course: "AIML232" },
+            { type: "COURSE", course: "AIML320" },
+            { type: "COURSE", course: "COMP307" },
+            { type: "COURSE", course: "COMP309" },
+          ],
+        },
+        {
+          type: "OR",
+          clauses: [
+            { type: "COURSE", course: "AIML331" },
+            { type: "COURSE", course: "AIML332" },
+            { type: "COURSE", course: "AIML333" },
+          ],
+        },
+      ],
+    },
+    corequisites: { type: "AND", clauses: [] },
+    restrictions: { type: "AND", clauses: [] },
+  },
+
+  AIML420: {
+    prerequisites: {
+      type: "AND",
+      clauses: [
+        {
+          type: "POINTS",
+          minPoints: 60,
+          level: 300,
+          subjects: ["CGRA", "COMP", "CYBR", "DATA", "SWEN", "NWEN"],
+        },
+      ],
+    },
+    corequisites: { type: "AND", clauses: [] },
+    restrictions: {
+      type: "OR",
+      clauses: [
+        { type: "COURSE", course: "AIML231" },
+        { type: "COURSE", course: "AIML232" },
+        { type: "COURSE", course: "AIML320" },
+        { type: "COURSE", course: "AIML421" },
+        { type: "COURSE", course: "COMP307" },
+        { type: "COURSE", course: "COMP309" },
+        { type: "COURSE", course: "COMP420" },
+      ],
+    },
+  },
+
+  AIML425: {
+    prerequisites: {
+      type: "OR",
+      clauses: [
+        { type: "COURSE", course: "AIML320" },
+        { type: "COURSE", course: "AIML331" },
+        { type: "COURSE", course: "AIML332" },
+        { type: "COURSE", course: "AIML333" },
+        { type: "COURSE", course: "AIML420" },
+        { type: "COURSE", course: "COMP307" },
+        { type: "COURSE", course: "DATA305" },
+        { type: "COURSE", course: "DATA475" },
+      ],
+    },
+    corequisites: { type: "AND", clauses: [] },
+    restrictions: {
+      type: "AND",
+      clauses: [
+        { type: "COURSE", course: "COMP421" },
+        { type: "COURSE", course: "COMP422" },
+      ],
+    },
+  },
+
+  AIML426: {
+    prerequisites: {
+      type: "OR",
+      clauses: [
+        { type: "COURSE", course: "AIML320" },
+        { type: "COURSE", course: "AIML331" },
+        { type: "COURSE", course: "AIML332" },
+        { type: "COURSE", course: "AIML333" },
+        { type: "COURSE", course: "AIML420" },
+        { type: "COURSE", course: "COMP307" },
+        { type: "COURSE", course: "DATA305" },
+        { type: "COURSE", course: "DATA475" },
+      ],
+    },
+    corequisites: { type: "AND", clauses: [] },
+    restrictions: { type: "AND", clauses: [] },
+  },
   AIML427: {
     prerequisites: {
       type: "AND",
@@ -9,7 +356,9 @@ export const courseDependencies = {
             { type: "COURSE", course: "AIML231" },
             { type: "COURSE", course: "AIML232" },
             { type: "COURSE", course: "AIML320" },
-            { type: "COURSE", course: "AIML331-335" },
+            { type: "COURSE", course: "AIML331" },
+            { type: "COURSE", course: "AIML332" },
+            { type: "COURSE", course: "AIML333" },
             { type: "COURSE", course: "AIML420" },
             { type: "COURSE", course: "AIML421" },
             { type: "COURSE", course: "COMP307" },
@@ -35,7 +384,109 @@ export const courseDependencies = {
         },
       ],
     },
+    corequisites: { type: "AND", clauses: [] },
+    restrictions: {
+      type: "AND",
+      clauses: [{ type: "COURSE", course: "COMP424" }],
+    },
+  },
+
+  AIML428: {
+    prerequisites: {
+      type: "OR",
+      clauses: [
+        { type: "COURSE", course: "AIML331" },
+        { type: "COURSE", course: "AIML332" },
+        { type: "COURSE", course: "AIML333" },
+        { type: "COURSE", course: "COMP307" },
+        { type: "COURSE", course: "DATA305" },
+        { type: "COURSE", course: "DATA475" },
+      ],
+    },
     corequisites: {
+      type: "OR",
+      clauses: [
+        { type: "COURSE", course: "AIML320" },
+        { type: "COURSE", course: "AIML420" },
+      ],
+    },
+    restrictions: {
+      type: "AND",
+      clauses: [{ type: "COURSE", course: "COMP423" }],
+    },
+  },
+
+  AIML430: {
+    prerequisites: {
+      type: "AND",
+      clauses: [
+        {
+          type: "POINTS",
+          minPoints: 60,
+          level: 300,
+          subjects: [],
+        },
+      ],
+    },
+    corequisites: { type: "AND", clauses: [] },
+    restrictions: { type: "AND", clauses: [] },
+  },
+
+  AIML431: {
+    prerequisites: {
+      type: "OR",
+      clauses: [
+        { type: "COURSE", course: "AIML320" },
+        { type: "COURSE", course: "AIML331" },
+        { type: "COURSE", course: "AIML332" },
+        { type: "COURSE", course: "AIML333" },
+        { type: "COURSE", course: "AIML420" },
+        { type: "COURSE", course: "COMP307" },
+        { type: "COURSE", course: "DATA305" },
+        { type: "COURSE", course: "DATA475" },
+      ],
+    },
+    corequisites: { type: "AND", clauses: [] },
+    restrictions: { type: "AND", clauses: [] },
+  },
+  AIML501: {
+    prerequisites: {
+      type: "AND",
+      clauses: [
+        {
+          type: "POINTS",
+          minPoints: 45,
+          level: 400,
+          subjects: ["AIML"],
+        },
+      ],
+    },
+    corequisites: {
+      type: "AND",
+      clauses: [],
+    },
+    restrictions: {
+      type: "AND",
+      clauses: [],
+    },
+  },
+  AIML589: {
+    prerequisites: {
+      type: "AND",
+      clauses: [
+        {
+          type: "POINTS",
+          minPoints: 45,
+          level: 400,
+          subjects: ["AIML"],
+        },
+      ],
+    },
+    corequisites: {
+      type: "AND",
+      clauses: [{ type: "COURSE", course: "AIML501" }],
+    },
+    restrictions: {
       type: "AND",
       clauses: [],
     },
