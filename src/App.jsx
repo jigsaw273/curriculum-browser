@@ -12,27 +12,19 @@ import {
   FaArrowRight,
   FaColumns,
   FaGraduationCap,
-  FaCaretLeft,
-  FaCaretRight,
 } from "react-icons/fa";
 import "./App.css";
-import ForwardPlanner from "./features/fowardplanner/ForwardPlanner";
-import ForwardPlannerCard from "./features/temp/ForwardPlannerCard";
+import CourseGraphPage from "./pages/CourseGraphPage";
 import CourseInfoPage from "./pages/CourseInfoPage";
 import YearPlannerPage from "./pages/YearPlannerPage";
 import MyTimetablePage from "./pages/MyTimetablePage";
 import SearchPage from "./pages/SearchPage";
-import ExtendedCourseFlow from "./pages/ExtendedCourseFlow";
+import ForwardPlannerPage from "./pages/ForwardPlannerPage";
 import LandingPage from "./pages/LandingPage";
-import CurriculumGraph from "./pages/CurriculumGraph";
+import RequisiteGraph from "./pages/RequisiteGraph";
 
 function App() {
   const [collapsed, setCollapsed] = useState(false);
-  const [showLanding, setShowLanding] = useState(true);
-
-  if (showLanding) {
-    return <LandingPage onContinue={() => setShowLanding(false)} />;
-  }
 
   const navLinks = [
     { to: "/search", label: "Course Search", icon: FaGraduationCap },
@@ -84,14 +76,12 @@ function App() {
             }`}
           >
             <Routes>
-              {/* <Route path="/" element={<LandingPage />} /> */}
               <Route path="/search" element={<SearchPage />} />
-              <Route path="/tree" element={<ForwardPlannerCard />} />
-              <Route path="/dependency-tree" element={<ForwardPlanner />} />
+              <Route path="/dependency-tree" element={<CourseGraphPage />} />
               <Route path="/timetable" element={<MyTimetablePage />} />
               <Route path="/year-planner" element={<YearPlannerPage />} />
-              <Route path="/forward-planner" element={<ExtendedCourseFlow />} />
-              <Route path="/" element={<Navigate to="/search" replace />} />
+              <Route path="/forward-planner" element={<ForwardPlannerPage />} />
+              <Route path="/" element={<LandingPage />} />
               <Route
                 path="/course/:courseCode/:courseNum"
                 element={<CourseInfoPage />}

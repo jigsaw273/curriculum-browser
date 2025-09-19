@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import useCourseSearch from "../hooks/useCourseSearch";
 import SearchBar from "../features/search/SearchBar";
 import { DndContext, useDraggable, useDroppable } from "@dnd-kit/core";

@@ -1,3 +1,4 @@
+import React from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -61,7 +62,6 @@ export default function Timetable({ offering }) {
         max={new Date(0, 0, 0, 17, 0)} // 6 PM
         toolbar={false} // hide navigation
         eventPropGetter={eventStyleGetter} // apply color
-        // style={{ height: 1600 }} // 12 hours * 200px = 2400px
         formats={{
           dayFormat: (date, culture, loc) => loc.format(date, "dddd"), //remove dates
         }}

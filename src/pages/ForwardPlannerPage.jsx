@@ -1,14 +1,13 @@
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState } from "react";
 import SearchBar from "../features/search/SearchBar.jsx";
 import useCourseSearch from "../hooks/useCourseSearch.js";
 import { useForwardPlanner } from "../hooks/useForwardPlanner.js";
-import { courseData } from "../data/prereq";
+import { courseData } from "../data/prereq.js";
 import { useNavigate } from "react-router-dom";
 import "./Extended.css";
 
 import ReactFlow, {
   Background,
-  Controls,
   Panel,
   useNodesState,
   useEdgesState,
@@ -56,7 +55,7 @@ const getLayoutedElements = (nodes, edges, direction = "TB") => {
   };
 };
 
-export default function ExtendedCourseFlow() {
+export default function ForwardPlannerPage() {
   const { searchInput, setSearchInput, results } = useCourseSearch();
   const { selectedCourses, toggleCourse, possibleUnlocks, unlockedCourses } =
     useForwardPlanner();

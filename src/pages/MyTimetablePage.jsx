@@ -1,7 +1,7 @@
+import React, { useState, useEffect, useRef } from "react";
 import Timetable from "../features/timetable/Timetable";
 import useTimetableStore from "../hooks/useTimetableStore";
 import html2canvas from "html2canvas";
-import { useState, useEffect, useRef } from "react";
 
 export default function MyTimetablePage() {
   const [activeTab, setActiveTab] = useState("t1");

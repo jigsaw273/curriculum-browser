@@ -1,4 +1,10 @@
-import React, { useLayoutEffect, useCallback, useEffect, useMemo } from "react";
+import React, {
+  useLayoutEffect,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import ReactFlow, {
   Background,
   Controls,
@@ -8,9 +14,9 @@ import ReactFlow, {
   MarkerType,
 } from "reactflow";
 import dagre from "dagre";
-import { useForwardPlanner } from "../hooks/useForwardPlanner";
-import { courseData } from "../data/prereq";
-import { unlockGraph } from "../data/unlocks";
+import { useForwardPlanner } from "../../hooks/useForwardPlanner";
+import { courseData } from "../../data/prereq";
+import { unlockGraph } from "../../data/unlocks";
 import "reactflow/dist/style.css"; //default styles remove later
 
 const dagreGraph = new dagre.graphlib.Graph();
@@ -24,8 +30,8 @@ const getLayoutedElements = (nodes, edges, direction = "TB") => {
   const isHorizontal = direction === "LR";
   dagreGraph.setGraph({
     rankdir: direction,
-    nodesep: 30, // spacing between nodes
-    ranksep: 100, // spacing between levels
+    nodesep: 10, // spacing between nodes
+    ranksep: 80, // spacing between levels
     marginx: 10,
     marginy: 10,
   });
@@ -60,13 +66,14 @@ const getLayoutedElements = (nodes, edges, direction = "TB") => {
 // Memoized node types to prevent warnings
 const nodeTypes = {};
 
-export default function CourseFlow() {
+export default function ForwardCourseGraph() {
   //Forward Planner Hook
   const { selectedCourses, toggleCourse, possibleUnlocks, unlockedCourses } =
     useForwardPlanner();
 
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const [layoutDirection, setLayoutDirection] = useState("TB"); // TB = vertical, LR = horizontal
 
   //Memoize the base nodes (without styling)
   const baseNodes = useMemo(() => {
@@ -77,6 +84,12 @@ export default function CourseFlow() {
     }));
   }, []);
 
+  const toggleLayout = () => {
+    const newDirection = layoutDirection === "TB" ? "LR" : "TB";
+    setLayoutDirection(newDirection);
+    onLayout(newDirection);
+  };
+
   // Memoize prerequisite edges
   const prereqEdges = useMemo(() => {
     return courseData.courses.flatMap((course) =>
@@ -85,9 +98,13 @@ export default function CourseFlow() {
         source: prereq,
         target: course.id,
         type: "smoothstep",
-        markerEnd: { type: MarkerType.Arrow },
+        markerEnd: {
+          type: MarkerType.ArrowClosed,
+          width: 15,
+          height: 15,
+        },
         className: "prereq-edge",
-        style: { stroke: "#9ea1bbff" },
+        style: { stroke: "#bebfcc" },
       }))
     );
   }, []);
@@ -101,14 +118,13 @@ export default function CourseFlow() {
         let color = "black";
 
         if (selectedCourses.includes(node.id)) {
-          backgroundColor = "#3e3cafff";
+          backgroundColor = "#0A2342"; // taken
           color = "white";
         } else if (unlockedCourses.includes(node.id)) {
-          backgroundColor = "#1fa660ff";
-          color = "black";
+          backgroundColor = "#2D8B73"; // true unlock
+          color = "white";
         } else if (possibleUnlocks.includes(node.id)) {
-          backgroundColor = "#c2c2c7ff";
-          color = "black";
+          backgroundColor = "#DEDDDC"; // partial unlock
         }
 
         return {
@@ -200,14 +216,45 @@ export default function CourseFlow() {
         fitView
         fitViewOptions={{ padding: 0.2 }}
       >
+        <Panel position="top-left">
+          <h2>Click on a node to select it...</h2>
+          <div className="p-3 mt-4 bg-white/90 rounded text-sm space-y-2 w-fit ">
+            <div className="flex items-center gap-2">
+              <span
+                className="w-4 h-4 rounded"
+                style={{ backgroundColor: "#0A2342" }}
+              ></span>
+              <span className="text-gray-800">Taken</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span
+                className="w-4 h-4 rounded"
+                style={{ backgroundColor: "#2D8B73" }}
+              ></span>
+              <span className="text-gray-800 ">Unlocked</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span
+                className="w-4 h-4 rounded"
+                style={{ backgroundColor: "#DEDDDC" }}
+              ></span>
+              <span className="text-gray-800">Possible</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span
+                className="w-4 h-4 rounded border border-[#bebfcc]"
+                style={{ backgroundColor: "#fff" }}
+              ></span>
+              <span className="text-gray-800">Unselected</span>
+            </div>
+          </div>
+        </Panel>
         <Panel position="top-right">
-          <button className="panel-button" onClick={() => onLayout("TB")}>
-            vertical layout
-          </button>
-          <button className="panel-button" onClick={() => onLayout("LR")}>
-            horizontal layout
+          <button className="panel-button" onClick={toggleLayout}>
+            {layoutDirection === "TB" ? "Horizontal layout" : "Vertical layout"}
           </button>
         </Panel>
+
         <Background />
         <Controls />
       </ReactFlow>

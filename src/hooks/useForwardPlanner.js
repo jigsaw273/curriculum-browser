@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { unlockGraph } from "../data/unlocks.js";
-import { courseDependencies } from "../data/courses.js";
+import { courseDependencies } from "../data/courseDependencies.js";
 
 export function useForwardPlanner() {
   const [selectedCourses, setSelectedCourses] = useState([]);

@@ -115,11 +115,11 @@
 }
 
 .postreq-node {
-  margin: 0 var(--connector-size) 1px 0;
-  border-color: 8C7BC9#6f53d4;
   color: #291b5a;
   background-color: #beaff5;
+  margin: 0 var(--connector-size) 1px 0;
   flex: 0 1 6em;
+  border-color: 8C7BC9#6f53d4;
 }
 
 .postreq-node::before {

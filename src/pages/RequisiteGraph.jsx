@@ -1,11 +1,11 @@
-import { useState, useCallback } from "react";
+import { useCallback } from "react";
 import ReactFlow, { Background, Controls, useNodesState } from "reactflow";
 import "reactflow/dist/style.css";
 
 import { unlockGraph } from "../data/unlocks.js";
-import { courseDependencies as courses } from "../data/courses.js";
+import { courseDependencies as courses } from "../data/courseDependencies.js";
 
-function CurriculumGraph() {
+function RequisiteGraph() {
   const initialNodes = Object.keys(courses).map((id, index) => ({
     id,
     data: { label: id },
@@ -97,4 +97,4 @@ function CurriculumGraph() {
   );
 }
 
-export default CurriculumGraph;
+export default RequisiteGraph;

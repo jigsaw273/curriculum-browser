@@ -1,5 +1,5 @@
 import { useForwardPlanner } from "../../hooks/useForwardPlanner.js";
-import { courseDependencies } from "../../data/courses.js";
+import { courseDependencies } from "../../data/courseDependencies.js";
 import "./ForwardPlannerCard.css";
 
 export default function ForwardPlanner() {
@@ -13,7 +13,6 @@ export default function ForwardPlanner() {
           <button
             key={courseId}
             onClick={() => toggleCourse(courseId)}
-            //if the id is in the list of selected courses then mark className as 'selected'
             className={selectedCourses.includes(courseId) ? "selected" : ""}
           >
             {courseId}

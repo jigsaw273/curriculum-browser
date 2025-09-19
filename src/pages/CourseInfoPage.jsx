@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useState } from "react";
-import { courseDependencies } from "../data/courses";
+import { courseDependencies } from "../data/courseDependencies";
 import { courseDetails } from "../data/courseDetails";
 import { unlockGraph } from "../data/unlocks";
 import CourseTree from "../features/courseTree/CourseTree";
