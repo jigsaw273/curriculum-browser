@@ -55,7 +55,3 @@ Contributions are welcome. Open an issue or submit a pull request if you’d lik
 ## License
 
 MIT License
-
----
-
-Do you want me to also add a **short “Why I built this”** section (something that explains the motivation and gives it personality), or should we keep it strictly about the app?
